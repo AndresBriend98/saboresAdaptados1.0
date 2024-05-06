@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pacientes</title>
+    <link rel="icon" href="assets/images/faviicon/favicon.ico" />
+    <!-- Estilos y librerías externas -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="chatbot/css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Estilos personalizados -->
+    <style>
+        /* Estilo para el modal para modificar el nivel de adaptación */
+        #edit-level-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgb(255, 1, 1);
+            padding: 20px;
+            border: 1px sólido #ddd;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px ;
+            max-height: 45vh !important;
+            overflow: hidden;
+        }
+
+
+        .btn-red {
+            background-color: #ff8243;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-red:hover {
+            background-color: rgb(224, 93, 6);
+            color: white;
+        }
+
+        /* Estilo para el botón de cierre */
+        #edit-level-modal .close {
+            float: left;
+            /* Ubicar el botón de cierre a la derecha */
+            cursor: pointer;
+            /* Mostrar cursor de mano */
+            font-size: 24px;
+            /* Tamaño del icono */
+            color: #ff9900;
+            /* Color gris suave */
+            padding-right: 25px;
+        }
+
+        @media (max-width: 375px) {
+            #edit-level-modal {
+                max-height: 55vh;
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 280px) {
+            #edit-level-modal {
+                max-height: 65vh;
+                width: 90%;
+            }
+        }
+
+        #edit-level-modal .modal-footer {
+            /* Centrar el botón dentro del pie de página del modal */
+            display: flex;
+            justify-content: center;
+        }
+
+        #confirm-level-change {
+            /* Estilo para el botón de confirmación */
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        #confirm-level-change:hover {
+            background: #218838;
+        }
+
+        /* Cambiar el color al pasar el cursor */
+        #edit-level-modal .close:hover {
+            color: #ff5e00;
+            /* Color más oscuro al pasar el cursor */
+        }
+
+
+        /* Estilo para el botón de confirmación */
+        #confirm-level-change {
+            background: #28a745;
+            /* Verde para el botón */
+            color: white;
+            /* Texto blanco para contraste */
+            border: none;
+            /* Sin borde */
+            border-radius: 5px;
+            /* Bordes redondeados */
+            padding: 10px;
+
+            text-align: center;
+            /* Espacio interno */
+            transition: background-color 0.3s;
+            /* Efecto de transición */
+        }
+
+        /* Cambiar el color del botón al pasar el cursor */
+        #confirm-level-change:hover {
+            background: #218838;
+            /* Verde más oscuro para hover */
+        }
+
+        .main-banner {
+            min-height: 80vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            background-image: url("assets/images/background/blog-pattern-bg.png");
+            padding-top: 150px;
+        }
+
+        .patient-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .patient-card:hover {
+            transform: scale(1.05);
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .action-buttons button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .action-buttons .btn-edit {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .action-buttons .btn-edit:hover {
+            background-color: #e0a800;
+        }
+
+        #edit-level-modal {
+            display: none;
+            /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        #edit-level-modal .close {
+            float: right;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        #edit-level-modal .close:hover {
+            color: #333;
+        }
+
+        /* Estilo para el contenedor del footer */
+        .site-footer {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+
+        #logoutNotificationContainer {
+            position: fixed;
+            bottom: 0;
+            /* Mantener en la parte inferior */
+            left: 0;
+            width: 100%;
+            /* Ocupar todo el ancho */
+            z-index: 999;
+            /* Asegurarse de que esté por encima de otros elementos */
+            background-color: #f8f9fa;
+            /* Fondo para el contenedor */
+            padding: 10px;
+            /* Espaciado interno */
+        }
+
+        /* Barra de progreso verde */
+        .progress-bar-green {
+            background-color: rgb(255, 146, 82);
+            /* Color verde para éxito */
+        }
+
+        /* Estilo para el mensaje de cierre de sesión */
+        .alert-success {
+            color: rgb(170, 73, 16);
+            /* Color del texto para el mensaje de éxito */
+            background-color: rgb(230, 210, 199);
+            /* Fondo verde claro */
+            border-color: #c3e6cb;
+            /* Borde del mismo tono */
+        }
+
+        #search-dni {
+            width: 200px;
+            /* Ancho del campo de búsqueda */
+            padding: 10px;
+            /* Espaciado interno */
+            border: 1px solid #ccc;
+            /* Borde */
+            border-radius: 5px;
+            /* Bordes redondeados */
+        }
+
+        #search-dni:focus {
+            border-color: #28a745;
+            /* Color del borde al hacer foco */
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            /* Centrar el campo de búsqueda y el botón de lupa */
+            margin-top: 20px;
+        }
+
+        .patient-container {
+            display: flex;
+            justify-content: center;
+            /* Centrar horizontalmente */
+            align-items: center;
+            /* Centrar verticalmente */
+            min-height: 100px;
+            /* Altura mínima para centrar verticalmente */
+        }
+
+        .patient-card1 {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            /* Centrar botones */
+            gap: 10px;
+            /* Espacio entre botones */
+        }
+
+        .btn-red {
+            background-color: #ff8243;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-red:hover {
+            background-color: rgb(224, 93, 6);
+            /* Color al pasar el cursor */
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            /* Centrar horizontalmente */
+            margin-top: 20px;
+            /* Espacio entre búsqueda y contenido */
+            position: relative;
+        }
+
+        .patient-container {
+            display: flex;
+            justify-content: center;
+            /* Centrar horizontalmente */
+            align-items: flex-start;
+            /* Mantener alineado al inicio */
+            margin-top: 20px;
+            /* Espacio entre búsqueda y tarjeta */
+            text-align: center;
+            /* Alinear contenido al centro */
+            width: 600px;
+        }
+
+        .patient-card1 {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            /* Centrar el contenido interno */
+            transition: transform 0.3s;
+        }
+
+        .patient-card1:hover {
+            transform: scale(1.05);
+            /* Efecto de hover */
+        }
+
+        @media (max-width: 2000px) {
+
+            /*ACA ME QUEDE CONFIGURANDO ESTO!!!*/
+            #edit-level-modal {
+                max-height: 65vh;
+                width: 90%;
+            }
+
+            .patient-container {
+                width: 1300px;
+            }
+
+            #search-dni {
+                width: 600px;
+                /* Ancho del campo de entrada */
+                height: 40px;
+                /* Altura del campo de entrada */
+                padding: 10px;
+                /* Espaciado interno */
+                font-size: 16px;
+                /* Tamaño del texto */
+                border-radius: 5px;
+                /* Bordes redondeados */
+                border: 1px solid #ccc;
+                /* Borde del campo */
+                transition: all 0.3s;
+            }
+
+            #search-dni:focus {
+                border-color: #28a745;
+                /* Cambia el color del borde al enfocarse */
+            }
+        }
+
+        /* Estilo para las tarjetas cuando se busca por DNI */
+        .patient-card-search {
+            background: #f8f8f8;
+            /* Fondo gris claro */
+            border: 2px solid #aaa;
+            /* Borde más visible */
+            border-radius: 15px;
+            /* Bordes más redondeados */
+            box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
+            /* Sombra más profunda */
+            padding: 30px;
+            /* Mayor espacio interno */
+            text-align: left;
+            /* Alineación a la izquierda */
+            transition: transform 0.3s;
+        }
+
+        .patient-card-search:hover {
+            transform: scale(1.1);
+            /* Efecto de hover más pronunciado */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Contenedor para cierre de sesión y barra de progreso -->
+    <div id="logoutNotificationContainer" style="display: none;">
+        <div id="logoutProgressBar" class="progress" style="height: 5px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-green" role="progressbar"
+                style="width: 0%;">
+            </div>
+        </div>
+
+        <div id="logoutSuccessMessage" class="alert alert-success text-center">
+            Cerrando sesión...
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 mt-4">
+                    <div class="header-logo">
+                        <img src="assets/images/logo.png" width="300" height="100" alt="Logo">
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="main-navigation">
+                        <button class="menu-toggle"><span></span><span></span></button>
+                        <nav class="header-menu">
+                            <ul class="menu food-nav-menu">
+                                <li><a href="home-admin.html">Inicio</a></li>
+                                <li><a href="form.html">Agregar Pacientes</a></li>
+                                <li><a href="view-patients.html">Ver Pacientes</a></li>
+                                <li><a href="allRecipes.html">Ver Recetas</a></li>
+                                <li><a href="home1.html">Cerrar Sesión</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección para mostrar pacientes -->
+    <div id="viewport">
+        <div id="js-scroll-content">
+            <section class="main-banner" id="home"
+                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
+                <div class="container">
+                    <div class="book-table-shape">
+                        <img src="assets/images/background/table-leaves-shape.png" alt="">
+                    </div>
+
+                    <div class="book-table-shape book-table-shape2">
+                        <img src="assets/images/background/table-leaves-shape.png" alt="">
+                    </div>
+                    <div class="js-parallax-scene">
+                        <div class="banner-shape-1 w-100" data-depth="0.30">
+                            <img src="assets/images/background/berry.png" alt="">
+                        </div>
+                        <div class="banner-shape-2 w-100" data-depth="0.25">
+                            <img src="assets/images/background/leaf.png" alt="">
+                        </div>
+                    </div>
+                    <div class="sec-title text-center mb-5">
+                        <p class="sec-sub-title mb-3">Pacientes</p>
+                        <h2 class="h2-title">Lista de pacientes</h2>
+                        <div class="sec-title-shape mb-4">
+                            <img src="assets/images/figure/title-shape.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="search-container mb-3">
+                        <input type="text" id="search-dni" class="form-control" placeholder="Buscar por DNI">
+                        <!-- Campo de búsqueda -->
+                        <button id="search-button" class="btn"><i class="fa fa-search"></i></button>
+                        <!-- Botón de búsqueda -->
+                    </div>
+                    <div class="swiper-container patient-slider">
+                        <div class="swiper-wrapper" id="patient-list">
+                            <!-- Lista de pacientes generada dinámicamente -->
+                        </div>
+                        <div class="swiper-button-wp">
+                            <div class="swiper-button-prev swiper-button">
+                                <i class="uil uil-angle-left"></i>
+                            </div>
+                            <div class="swiper-button-next swiper-button">
+                                <i class "uil uil-angle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modal para modificar el nivel de adaptación -->
+            <div id="edit-level-modal" class="modal">
+                <div class="modal-header">
+                    <span class="close">&times;</span> <!-- Botón para cerrar el modal -->
+                    <h2>Modificar nivel de adaptación</h2> <!-- Título del modal -->
+                </div>
+                <div class="modal-body">
+                    <label para="new-level">Seleccione el nuevo nivel:</label>
+                    <select id="new-level" class="form-control">
+                        <option value="1">Nivel 1</option>
+                        <option value="2">Nivel 2</option>
+                        <option value="3">Nivel 3</option>
+                        <option value="4">Nivel 4</option>
+                        <option value="5">Nivel 5</option>
+                        <option value="6">Nivel 6</option>
+                        <option value="7">Nivel 7</option>
+                    </select>
+                </div>
+                <div class="modal-footer" style="text-align: center; flex-direction: column;">
+                    <!-- Botón de confirmación -->
+                    <button id="confirm-level-change" class="btn-red">Confirmar</button>
+
+                    <!-- Barra de carga -->
+                    <div id="confirm-progress-bar" class="progress"
+                        style="display: none; height: 5px; margin-top: 10px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                            style="width: 0%; background-color: #ff8243;"></div>
+                    </div>
+
+                    <!-- Mensaje de éxito -->
+                    <div id="confirm-success-message" style="display: none; color: green; margin-top: 10px;">
+                        Cambio realizado con éxito!
+                    </div>
+
+                    <!-- Mensaje de error -->
+                    <div id="confirm-error-message" style="display: none; color: red; margin-top: 10px;">
+                        <!-- Mensaje de error por defecto -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <!-- SweetAlert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+        <script>
+            $(document).ready(function () {
+                // Cargar todos los pacientes y mostrarlos
+                function loadAllPatients() {
+                    $.get("/admin/patients", function (patients) {
+                        const content = patients.map(patient => `
+                <div class="swiper-slide col-lg-4">
+                    <div class="patient-card"> <!-- Clase para la vista inicial -->
+                        <h4>${patient.name} ${patient.surname}</h4>
+                        <p>DNI: ${patient.dni}</p>
+                        <p>Fecha de Nacimiento: ${patient.birthDate}</p>
+                        <p>Informe de Salud: ${patient.healthReport}</p>
+                        <p>Nivel de adaptación: ${patient.level}</p>
+                        <div class="action-buttons">
+                            <button class="btn-red" onclick="openEditLevelModal('${patient.dni}')">Modificar nivel de adaptación</button>
+                        </div>
+                    </div>
+                </div>
+            `).join("");
+
+                        $("#patient-list").html(content); // Añadir al DOM
+                    });
+                }
+
+                // Cargar todos los pacientes al iniciar
+                loadAllPatients(); // Usa el diseño para la vista inicial
+
+                // Función para crear tarjetas para la búsqueda por DNI
+                function createPatientCard(patient) {
+                    return `
+            <div class="patient-container" id="patient-container">
+                <div class="patient-card-search"> <!-- Clase para la búsqueda por DNI -->
+                    <h4>${patient.name} ${patient.surname}</h4>
+                    <p>DNI: ${patient.dni}</p>
+                    <p>Fecha de Nacimiento: ${patient.birthDate}</p>
+                    <p>Informe de Salud: ${patient.healthReport}</p>
+                    <p>Nivel de adaptación: ${patient.level}</p>
+                    <div class="action-buttons">
+                        <button class="btn-red" onclick="openEditLevelModal('${patient.dni}')">Modificar nivel de adaptación</button>
+                    </div>
+                </div>
+            </div>
+        `;
+                }
+
+                // Función para buscar pacientes por DNI
+                function searchByDNI(dni) {
+                    $.get("/admin/patients", function (patients) {
+                        const filteredPatients = patients.filter(patient => patient.dni === dni);
+
+                        if (filteredPatients.length > 0) {
+                            const content = filteredPatients.map(createPatientCard).join("");
+                            $("#patient-list").html(content); // Mostrar pacientes filtrados
+                        } else {
+                            Swal.fire({
+                                title: 'DNI no registrado',
+                                text: 'El paciente con el DNI ingresado no está registrado.',
+                                icon: 'error',
+                                timer: 2000,
+                                timerProgressBar: true,
+                                showConfirmButton: false,
+                                allowOutsideClick: false,
+                            });
+                        }
+                    });
+                }
+
+                // Evento para buscar pacientes por DNI cuando se hace clic en el botón de búsqueda
+                $("#search-button").on("click", function () {
+                    const dni = $("#search-dni").val().trim(); // Obtener el valor del campo de búsqueda
+                    if (dni) {
+                        searchByDNI(dni); // Buscar pacientes por DNI
+                    } else {
+                        alert("Ingrese un DNI para buscar");
+                    }
+                });
+
+                // Evento para buscar pacientes por DNI cuando se presiona "Enter"
+                $("#search-dni").on("keyup", function (e) {
+                    const dni = $(this).val().trim();
+
+                    if (dni === "") {
+                        loadAllPatients(); // Si el campo está vacío, cargar todos los pacientes
+                    } else if (e.key === "Enter") {
+                        searchByDNI(dni); // Buscar pacientes por DNI
+                    }
+                });
+            });
+
+
+
+
+            // Función para abrir el modal para editar el nivel
+            function openEditLevelModal(dni) {
+                console.log("Modificar nivel para paciente con DNI:", dni); // Para depuración
+                // Lógica para abrir el modal para editar nivel de adaptación
+            }
+        </script>
+
+        <script>
+            // Configuración de Swiper para la navegación de pacientes
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    768: { // Configuración para pantallas más grandes
+                        slidesPerView: 2,
+                    },
+                },
+            });
+
+            // Variable para almacenar el DNI del paciente que se está modificando
+            let currentPatientDNI = "";
+
+            // Función para abrir el modal y asignar el DNI del paciente
+            function openEditLevelModal(dni) {
+                currentPatientDNI = dni; // Guardar el DNI del paciente
+                $("#edit-level-modal").show(); // Mostrar el modal
+            }
+
+            // Cerrar el modal al hacer clic en el botón de cierre
+            $("#edit-level-modal .close").on("click", function () {
+                $("#edit-level-modal").hide(); // Cerrar el modal
+            });
+
+            function resetModal() {
+                $("#edit-level-modal").hide(); // Ocultar el modal
+                $("#confirm-error-message").hide(); // Ocultar el mensaje de error
+                $("#confirm-progress-bar").hide(); // Ocultar la barra de carga
+                $("#confirm-success-message").hide(); // Ocultar el mensaje de éxito
+                $("#confirm-progress-bar .progress-bar").css("width", "0%"); // Restablecer la barra
+            }
+
+            // Evento para el botón de cierre
+            $(".close").on("click", resetModal);
+
+            // Evento para cerrar el modal cuando se hace clic fuera del área del modal
+            $(window).on("click", function (e) {
+                if (e.target.id === "edit-level-modal") {
+                    resetModal(); // Restablecer el modal
+                }
+            });
+
+            // Evento para el botón de confirmación
+            $("#confirm-level-change").on("click", function () {
+                const newLevel = $("#new-level").val(); // Obtener el nivel seleccionado
+
+                // Mostrar la barra de carga y reiniciar su estado
+                $("#confirm-progress-bar").show();
+                $("#confirm-progress-bar .progress-bar")
+                    .css("width", "0%") // Reiniciar la barra
+                    .animate({ width: "100%" }, 2000); // Animación para mostrar progreso
+
+                // Realizar la solicitud para actualizar el nivel del paciente
+                $.ajax({
+                    url: "/admin/update-patient-level",
+                    type: "PUT",
+                    data: {
+                        dni: currentPatientDNI, // DNI del paciente actual
+                        newLevel, // Nuevo nivel de adaptación
+                    },
+                    success: function (response) {
+                        // Mostrar el mensaje de éxito y restablecer el estado
+                        $("#confirm-progress-bar").hide(); // Ocultar la barra de carga
+                        $("#confirm-success-message").slideDown(); // Mostrar el mensaje de éxito
+
+                        setTimeout(() => {
+                            resetModal(); // Restablecer el estado y cerrar el modal
+                        }, 2000); // Cerrar después de 2 segundos
+                    },
+                    error: function (xhr) {
+                        $("#confirm-progress-bar").hide(); // Ocultar la barra de carga si falla
+
+                        if (xhr.status === 409) {
+                            $("#confirm-error-message").text("El paciente ya tiene asignado este nivel").slideDown(); // Mostrar mensaje de error
+                        } else {
+                            $("#confirm-error-message").text("El paciente ya tiene asignado este nivel").slideDown(); // Mensaje genérico
+                        }
+                    },
+                });
+            });
+
+
+
+        </script>
+
+        <script>
+            // Scroll suave para volver al principio
+            $(".scrolltop").on("click", function () {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            $(document).ready(function () {
+                $("a[href='home1.html']").on("click", function (e) {
+                    e.preventDefault();
+
+                    $("#logoutNotificationContainer").slideDown();
+
+                    $("#logoutProgressBar .progress-bar")
+                        .animate({ width: "100%" }, 2000);
+
+                    setTimeout(function () {
+                        window.location.href = "home1.html";
+                    }, 2000);
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Pacientes</title>
+    <link rel="icon" href="assets/images/faviicon/favicon.ico" />
+    <!-- for icons  -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- bootstrap  -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- for swiper slider  -->
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <!-- fancy box  -->
+    <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
+    <!-- custom css  -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- chatbot css  -->
+    <link rel="stylesheet" href="chatbot/css/chat.css">
+    <!-- font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .form-container {
+            margin-bottom: 200px;
+            /* Añadir margen inferior para separar del footer */
+        }
+
+        .site-footer {
+            position: fixed;
+            /* Mantener el footer fijo al fondo de la pantalla */
+            bottom: 0;
+            /* Asegurarse de que esté en la parte inferior */
+            width: 100%;
+            /* Asegurar que ocupe todo el ancho de la pantalla */
+            z-index: 100;
+            margin-top: 100px;
+            /* Añadir margen superior para separar del formulario */
+            /* Para mantenerlo por encima de otros elementos */
+        }
+
+        @media (max-width: 430px) {
+            .book-table {
+                margin-bottom: 50px;
+                /* Agregar un margen inferior para separar del footer */
+            }
+
+            .site-footer {
+                position: fixed;
+                /* Mantener el footer fijo al fondo de la pantalla */
+                bottom: 0;
+                /* Asegurarse de que esté en la parte inferior */
+                width: 100%;
+                /* Asegurar que ocupe todo el ancho de la pantalla */
+                z-index: 100;
+                /* Mantenerlo por encima de otros elementos */
+                margin-top: 30px;
+                /* Aumentar el margen superior para mayor separación */
+            }
+
+            #viewport {
+                min-height: 100vh;
+                /* Asegurar que el contenido principal ocupe al menos toda la altura de la pantalla */
+                display: flex;
+                /* Utilizar Flexbox para organizar verticalmente */
+                flex-direction: column;
+                /* Alinear verticalmente */
+            }
+
+            #js-scroll-content {
+                flex-grow: 1;
+                /* Asegura que el contenido crezca para llenar el espacio */
+            }
+        }
+
+        #logoutNotificationContainer {
+            position: fixed;
+            bottom: 0;
+            /* Mantener en la parte inferior */
+            left: 0;
+            width: 100%;
+            /* Ocupar todo el ancho */
+            z-index: 999;
+            /* Asegurarse de que esté por encima de otros elementos */
+            background-color: #f8f9fa;
+            /* Fondo para el contenedor */
+            padding: 10px;
+            /* Espaciado interno */
+        }
+
+        /* Barra de progreso verde */
+        .progress-bar-green {
+            background-color: rgb(255, 146, 82);
+            /* Color verde para éxito */
+        }
+
+        /* Estilo para el mensaje de cierre de sesión */
+        .alert-success {
+            color: rgb(170, 73, 16);
+            /* Color del texto para el mensaje de éxito */
+            background-color: rgb(230, 210, 199);
+            /* Fondo verde claro */
+            border-color: #c3e6cb;
+            /* Borde del mismo tono */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Contenedor para el mensaje de cierre de sesión y la barra de progreso -->
+    <div id="logoutNotificationContainer"
+        style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999;">
+        <!-- Barra de progreso para el cierre de sesión -->
+        <div id="logoutProgressBar" class="progress" style="height: 5px; margin-top: 5px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-green" role="progressbar"
+                style="width: 0%;">
+            </div>
+        </div>
+
+        <!-- Mensaje para el cierre de sesión -->
+        <div id="logoutSuccessMessage" class="alert alert-success text-center" style="margin: 0;">
+            Cerrando sesión...
+        </div>
+    </div>
+
+    <!-- Header  -->
+    <header class="site-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 mt-4">
+                    <div class="header-logo">
+                        <img src="assets/images/logo.png" width="300" height="100" alt="Logo">
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="main-navigation">
+                        <button class="menu-toggle"><span></span><span></span></button>
+                        <nav class="header-menu">
+                            <ul class="menu food-nav-menu">
+                                <li><a href="#" id="home-link">Inicio</a></li>
+                                <li><a href="#" id="recipes-link">Ver Recetas</a></li>
+                                <li><a href="home1.html">Cerrar Sesión</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Home  -->
+    <div id="viewport">
+        <div id="js-scroll-content">
+            <section class="main-banner" id="home"
+                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
+                <div class="book-table-shape">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+
+                <div class="book-table-shape book-table-shape2">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+                <div class="js-parallax-scene">
+                    <div class="banner-shape-1 w-100" data-depth="0.30">
+                        <img src="assets/images/background/berry.png" alt="">
+                    </div>
+                    <div class="banner-shape-2 w-100" data-depth="0.25">
+                        <img src="assets/images/background/leaf.png" alt="">
+                    </div>
+                </div>
+                <div class="sec-wp">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="banner-text">
+                                    <h1 class="h1-title">
+                                        <span>Sabores Adaptados</span>
+                                    </h1>
+                                    <p>Diversión en la cocina, seguridad en cada plato. Nuestras recetas adaptadas lo
+                                        tienen todo.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="banner-img-wp">
+                                    <div class="banner-img"
+                                        style="background-image: url(assets/images/background/main-b.jpg);">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--What we offer-->
+            <section class="about-sec section" id="about"
+                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
+                <div class="book-table-shape">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+
+                <div class="book-table-shape book-table-shape2">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sec-title text-center mb-5">
+                                <p class="sec-sub-title mb-3">¿Que ofrecemos?</p>
+                                <h2 class="h2-title">Mejorar tu calidad<span>de vida</span></h2>
+                                <div class="sec-title-shape mb-4">
+                                    <img src="assets/images/figure/title-shape.svg" alt="">
+                                </div>
+                                <p>Obtén productos alimenticios con texturas modificadas o adaptadas que
+                                    faciliten una adecuada nutrición para personas como tú, que padecen disfagia. La
+                                    adaptación de texturas
+                                    en alimentos y
+                                    bebidas es de vital importancia para estas personas, ya que ayuda a garantizar una
+                                    deglución segura y eficaz
+                                    minimizando los riesgos derivados de la misma, a la vez que da confianza a la
+                                    persona ya que disminuye el miedo
+                                    a atragantarse, razón por la que a menudo estos pacientes suelen disminuir su
+                                    ingesta de alimentos y bebidas,
+                                    afectando negativamente a su estado de salud, pudiéndoles llevar a un estado de
+                                    deshidratación o desnutrición y
+                                    a un empeoramiento del curso de la enfermedad.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8 m-auto">
+                            <div class="about-video">
+                                <div class="about-video-img"
+                                    style="background-image: url(assets/images/gallery/about.jpg);">
+                                </div>
+                                <div class="play-btn-wp">
+                                    <a href="https://www.youtube.com/watch?v=FUCFJcBbSgA" data-fancybox="video" class="play-btn">
+                                        <i class="uil uil-play"></i>
+
+                                    </a>
+                                    <span>Ver video</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="book-table section bg-light"
+                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
+                <div class="book-table-shape">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+
+                <div class="book-table-shape book-table-shape2">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+
+                <div class="sec-wp">
+                    <div class="container">
+                        <div class="row" id="gallery">
+                            <div class="col-lg-10 m-auto">
+                                <div class="book-table-img-slider" id="icon">
+                                    <div class="swiper-wrapper">
+                                        <a href="assets/images/gallery/bt1.jpg" data-fancybox="table-slider"
+                                            class="book-table-img back-img swiper-slide"
+                                            style="background-image: url(assets/images/gallery/bt1.jpg)"></a>
+                                        <a href="assets/images/gallery/bt4.jpg" data-fancybox="table-slider"
+                                            class="book-table-img back-img swiper-slide"
+                                            style="background-image: url(assets/images/gallery/bt4.jpg)"></a>
+                                        <a href="assets/images/gallery/bt3.jpg" data-fancybox="table-slider"
+                                            class="book-table-img back-img swiper-slide"
+                                            style="background-image: url(assets/images/gallery/bt3.jpg)"></a>
+                                        <a href="assets/images/gallery/bt5.jpg" data-fancybox="table-slider"
+                                            class="book-table-img back-img swiper-slide"
+                                            style="background-image: url(assets/images/gallery/bt5.jpg)"></a>
+                                        <a href="assets/images/gallery/bt2.jpg" data-fancybox="table-slider"
+                                            class="book-table-img back-img swiper-slide"
+                                            style="background-image: url(assets/images/gallery/bt2.jpg)"></a>
+                                        <a href="assets/images/gallery/bt6.jpg" data-fancybox="table-slider"
+                                            class="book-table-img back-img swiper-slide"
+                                            style="background-image: url(assets/images/gallery/bt6.jpg)"></a>
+                                    </div>
+
+                                    <div class="swiper-button-wp">
+                                        <div class="swiper-button-prev swiper-button">
+                                            <i class="uil uil-angle-left"></i>
+                                        </div>
+                                        <div class="swiper-button-next swiper-button">
+                                            <i class="uil uil-angle-right"></i>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </section>
+
+            <!--testimonials-->
+            <section class="testimonials section bg-light"
+                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
+                <div class="book-table-shape">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+
+                <div class="book-table-shape book-table-shape2">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+                <div class="sec-wp">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="sec-title text-center mb-5">
+                                    <p class="sec-sub-title mb-3">Pacientes</p>
+                                    <h2 class="h2-title">Opiniones</h2>
+                                    <div class="sec-title-shape mb-4">
+                                        <img src="assets/images/figure/title-shape.svg" alt="">
+                                    </div>
+                                    <div class="sec-title-shape mb-4">
+                                        <img src="assets/images/title-shape.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="testimonials-img">
+                                    <img src="assets/images/testimonials/testimonial-img.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="testimonials-box">
+                                            <div class="testimonial-box-top">
+                                                <div class="testimonials-box-img back-img"
+                                                    style="background-image: url(assets/images/testimonials/t1.jpg);">
+                                                </div>
+                                                <div class="star-rating-wp">
+                                                    <div class="star-rating">
+                                                        <span class="star-rating__fill" style="width:85%"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="testimonials-box-text">
+                                                <h3 class="h3-title">
+                                                    Lucia Campayo
+                                                </h3>
+                                                <p>Excelentes recetas, me encantaron.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="testimonials-box">
+                                            <div class="testimonial-box-top">
+                                                <div class="testimonials-box-img back-img"
+                                                    style="background-image: url(assets/images/testimonials/t2.jpg);">
+                                                </div>
+                                                <div class="star-rating-wp">
+                                                    <div class="star-rating">
+                                                        <span class="star-rating__fill" style="width:80%"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="testimonials-box-text">
+                                                <h3 class="h3-title">
+                                                    Alfredo Dominguez
+                                                </h3>
+                                                <p>Sinceramente, mejoraron mis días, ¡gracias!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="testimonials-box">
+                                            <div class="testimonial-box-top">
+                                                <div class="testimonials-box-img back-img"
+                                                    style="background-image: url(assets/images/testimonials/t3.jpg);">
+                                                </div>
+                                                <div class="star-rating-wp">
+                                                    <div class="star-rating">
+                                                        <span class="star-rating__fill" style="width:89%"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="testimonials-box-text">
+                                                <h3 class="h3-title">
+                                                    Pedro Wildemer
+                                                </h3>
+                                                <p>Recetas fáciles de hacer y bien explicadas.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="testimonials-box">
+                                            <div class="testimonial-box-top">
+                                                <div class="testimonials-box-img back-img"
+                                                    style="background-image: url(assets/images/testimonials/t4.jpg);">
+                                                </div>
+                                                <div class="star-rating-wp">
+                                                    <div class="star-rating">
+                                                        <span class="star-rating__fill" style="width:100%"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="testimonials-box-text">
+                                                <h3 class="h3-title">
+                                                    Josias Rodriguez
+                                                </h3>
+                                                <p>Buenisimas las recetas.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--Contact-->
+            <section class="book-table section bg-light"
+                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
+                <div class="book-table-shape">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+
+                <div class="book-table-shape book-table-shape2">
+                    <img src="assets/images/background/table-leaves-shape.png" alt="">
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="sec-title text-center mb-5">
+                            <p class="sec-sub-title mb-3">Contacto</p>
+                            <h2 class="h2-title">Comunicate con nosotras</h2>
+                            <div class="sec-title-shape mb-4">
+                                <img src="assets/images/figure/title-shape.svg" alt="">
+                            </div>
+                            <div class="sec-title-shape mb-4">
+                                <img src="assets/images/title-shape.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sec-wp">
+                    <div class="container">
+                        <div class="book-table-info">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4">
+                                    <div class="text-center">
+                                        <h3>Correo electronico</h3>
+                                        <p>saboresadaptados@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="call-now text-center">
+                                        <i class="uil uil-phone"></i>
+                                        <!--<a href="tel:+91-8866998866">+91 - 8866998866</a>-->
+                                        <a>+54 - 3794461980</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="table-title text-center">
+                                        <h3>Todos los dias</h3>
+                                        <p>Las 24 horas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="site-footer" id="contact"
+                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
+                <div class="bottom-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <div class="copyright-text">
+                                    <p>Copyright &copy; 2024 <span class="name">Sabores Adaptados</span> All Rights
+                                        Reserved.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="scrolltop"><i class="uil uil-angle-up"></i></button>
+                    </div>
+                </div>
+            </footer>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+            <script>
+                $(document).ready(function () {
+                    const dni = new URLSearchParams(window.location.search).get("dni");
+
+                    $("#ver-recetas").on("click", function () {
+                        window.location.href = `/recipes.html?dni=${dni}`;
+                    });
+                });
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                    // Obtener el `dni` de la URL actual
+                    const dni = new URLSearchParams(window.location.search).get("dni");
+
+                    // Si hay un `dni`, agregarlo al enlace de "Inicio"
+                    if (dni) {
+                        $("#inicio").attr("href", `home-patient.html?dni=${dni}`);
+                    }
+                });
+            </script>
+
+
+            <script>
+                $(document).ready(function () {
+                    const dni = new URLSearchParams(window.location.search).get("dni");
+
+                    if (dni) {
+                        $("#inicio").attr("href", `home-patient.html?dni=${dni}`); // Asegurar el `href` del enlace de "Inicio"
+                    }
+                });
+                $(document).ready(function () {
+                    $("a[href='home1.html']").on("click", function (e) {
+                        e.preventDefault(); // Evitar la redirección automática
+
+                        // Mostrar el contenedor con el mensaje y la barra de progreso
+                        $("#logoutNotificationContainer").slideDown(); // Deslizar hacia abajo para mostrar
+
+                        // Animar la barra de progreso
+                        $("#logoutProgressBar .progress-bar")
+                            .removeClass("progress-bar-red") // Asegurarse de que no tenga clase de error
+                            .addClass("progress-bar-green") // Barra verde para éxito
+                            .animate({ width: "100%" }, 2000); // Animar para llenar la barra
+
+                        // Redirigir después de 2 segundos
+                        setTimeout(function () {
+                            window.location.href = "home1.html"; // Redirigir a la página de inicio o login
+                        }, 2000);
+                    });
+                });
+
+            </script>
+
+            <!-- Script para propagar el `dni` al enlace "Inicio" -->
+            <script>
+                $(document).ready(function () {
+                    // Obtener el `dni` de la URL
+                    const params = new URLSearchParams(window.location.search);
+                    const dni = params.get("dni");
+
+                    // Si el `dni` está presente, propagarlo al enlace "Inicio"
+                    if (dni) {
+                        $("#home-link").attr("href", `home-patient.html?dni=${dni}`); // Mantener el `dni` en el enlace "Inicio"
+                        $("#recipes-link").attr("href", `recipes.html?dni=${dni}`); // Mantener el `dni` en el enlace "Ver Recetas"
+                    }
+                });
+            </script>
+            <script>
+                window.addEventListener("scroll", function () {
+                    const scrollTopButton = document.querySelector(".scrolltop");
+                    if (window.scrollY > 100) { // Si se desplaza más de 100px, mostrar el botón
+                        scrollTopButton.style.opacity = 1; // Hacer visible el botón
+                    } else {
+                        scrollTopButton.style.opacity = 0; // Ocultar el botón
+                    }
+                });
+
+                // Evento para hacer scroll hacia arriba cuando se hace clic en el botón
+                document.querySelector(".scrolltop").addEventListener("click", function () {
+                    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll suave hacia arriba
+                });
+            </script>
+            <!--google librarie-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+            <!--recipes-->
+            <script src="assets/js/recipes.js"></script>
+
+            <!-- jquery  -->
+            <script src="assets/js/jquery-3.5.1.min.js"></script>
+
+            <!-- bootstrap -->
+            <script src="assets/js/bootstrap.min.js"></script>
+            <script src="assets/js/popper.min.js"></script>
+
+            <!-- fontawesome  -->
+            <script src="assets/js/font-awesome.min.js"></script>
+
+            <!-- swiper slider  -->
+            <script src="assets/js/swiper-bundle.min.js"></script>
+
+            <!-- mixitup -- filter  -->
+            <script src="assets/js/jquery.mixitup.min.js"></script>
+
+            <!-- fancy box  -->
+            <script src="assets/js/jquery.fancybox.min.js"></script>
+
+            <!-- parallax  -->
+            <script src="assets/js/parallax.min.js"></script>
+
+            <!-- gsap  -->
+            <script src="assets/js/gsap.min.js"></script>
+
+            <!-- scroll trigger  -->
+            <script src="assets/js/ScrollTrigger.min.js"></script>
+
+            <!-- scroll to plugin  -->
+            <script src="assets/js/ScrollToPlugin.min.js"></script>
+
+            <!-- smooth scroll  -->
+            <script src="assets/js/smooth-scroll.js"></script>
+
+            <!-- custom js  -->
+            <script src="assets/js/main.js"></script>
+        </div>
+    </div>
+</body>
+
+</html>
