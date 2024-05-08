@@ -21,10 +21,6 @@ function getBotResponse(input) {
     } else if (["adios", "chau", "bye", "hasta luego", "nos vemos"].includes(input)) {
         return "¡Hasta pronto!";
 
-        // Love
-    } else if ("❤️") {
-        return "❤️";
-
         // Preguntas generales
     } else if (["como estas", "como estas", "que tal"].includes(input)) {
         return "Estoy bien, gracias por preguntar. ¿En qué puedo ayudarte?";
