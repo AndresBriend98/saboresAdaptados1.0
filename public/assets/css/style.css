@@ -992,10 +992,12 @@ p {
 }
 
 .dish-add-btn-download {
+    margin-left: 10px;
+    margin-bottom: 30px;
     padding: 5px 10px;
     font-size: 20px;
     height: 40px;
-    width: 40px;
+    width: 60px;
     text-align: center;
     display: inline-block;
     background-color: rgb(245, 17, 62);
@@ -1039,6 +1041,7 @@ p {
     margin-right: 10px;
     margin-bottom: 30px;
 }
+
 .dish-add-btn i {
     color: white;
     font-size: 22px;
@@ -2299,9 +2302,10 @@ p {
         height: 330px;
     }
 
-    .site-footer{
+    .site-footer {
         margin-top: 50px;
     }
+
     .form-container {
         padding: 20px;
         /* Espacio interno */
@@ -2456,6 +2460,7 @@ p {
     background-color: darkred;
 }
 
+
 .modal-content {
     display: flex;
     justify-content: center;
@@ -2488,8 +2493,12 @@ p {
 .dish-add-btn1:hover {
     background: linear-gradient(145deg, #e3a92b, #ffc933);
 }
+
 #menu-dish1 {
-    border: 2px solid red; /* Para hacer visible el contenedor */
-    min-height: 200px; /* Para asegurarse de que tenga suficiente altura */
-    background-color: rgba(255, 0, 0, 0.1); /* Para resaltar el área */
+    border: 2px solid red;
+    /* Para hacer visible el contenedor */
+    min-height: 200px;
+    /* Para asegurarse de que tenga suficiente altura */
+    background-color: rgba(255, 0, 0, 0.1);
+    /* Para resaltar el área */
 }

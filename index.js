@@ -12,8 +12,11 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+require('dotenv').config(); // Cargar variables de entorno al inicio del servidor
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://saboresAdaptados:1234@cluster0.elogi7r.mongodb.net/mydb";
+
+const MONGODB_URI = process.env.MONGODB_URI;
+const PORT = process.env.PORT || 3000;
 
 const connectDB = async () => {
     try {
@@ -28,6 +31,10 @@ const connectDB = async () => {
 };
 
 connectDB();
+
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+});
 
 var db = mongoose.connection;
 
@@ -118,10 +125,6 @@ app.get("/patient/:dni", async (req, res) => {
         console.error("Error al buscar paciente:", error);
         res.status(500).send("Error al buscar paciente.");
     }
-});
-
-app.listen(3000, () => {
-    console.log("Listening on port 3000");
 });
 
 app.post("/patient/login", async (req, res) => {

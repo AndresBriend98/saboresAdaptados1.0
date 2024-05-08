@@ -30,7 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 // Generar el contenido basado en la estructura del HTML proporcionado
-                const content = recipes.map((recipe, index) => `
+                const content = recipes.map((recipe, index) => {
+                    const downloadUrl = recipe.download;
+                    return `
                     <div class="col-lg-4 col-sm-6 dish-box-wp" data-cat="recipe-${index + 1}">
                         <div class="dish-box text-center">
                             <div class="dist-img">
@@ -43,6 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <ul>
                                     <li>
                                         <button id="open-recipe-modal-${index + 1}" class="dish-add-btn">Ver receta</button>
+                                    </li>
+                                    <li>
+                                        <a href="${downloadUrl}" download class="dish-add-btn-download">
+                                            <i class="uil uil-download-alt"></i>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -63,7 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                     </div>
-                `).join("");
+                    `;
+                }).join("");
 
                 $("#menu-dish").html(content); // Insertar recetas generadas dinámicamente
 

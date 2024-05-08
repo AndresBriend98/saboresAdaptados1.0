@@ -29,16 +29,37 @@
         }
 
         .site-footer {
-            position: fixed;
-            /* Mantener el footer fijo al fondo de la pantalla */
+            position: relative;
+            /* Asegura que esté relacionado con el contenedor superior */
             bottom: 0;
-            /* Asegurarse de que esté en la parte inferior */
+            /* Anclar al fondo del contenedor */
             width: 100%;
-            /* Asegurar que ocupe todo el ancho de la pantalla */
-            z-index: 100;
-            margin-top: 100px;
-            /* Añadir margen superior para separar del formulario */
-            /* Para mantenerlo por encima de otros elementos */
+            /* Ocupa todo el ancho disponible */
+            z-index: 1;
+            /* Establece la prioridad de capas para que esté detrás de otros elementos */
+            margin-top: 750px;
+            /* Espacio para separar del contenido superior */
+        }
+        @media (max-width: 1025px) {
+            .site-footer {
+                margin-top: 40px;
+                /* Aumentar el margen superior del footer para crear más espacio */
+                position: fixed;
+                /* Mantener el footer fijo al fondo de la pantalla */
+                bottom: 0;
+                /* Asegurarse de que esté en la parte inferior */
+                width: 100%;
+                /* Asegurar que ocupe todo el ancho de la pantalla */
+                z-index: 0;
+                /* Asegurarse de que esté por encima de otros elementos */
+            }
+
+        }
+
+        @media (max-width: 1023px) {
+            .chat-bar-collapsible {
+                z-index: 1000 !important;
+            }
         }
 
         @media (max-width: 430px) {
@@ -47,31 +68,40 @@
                 /* Agregar un margen inferior para separar del footer */
             }
 
+            .chat-bar-collapsible {
+                z-index: 1000;
+            }
+
+            .menu-list-row {
+                margin-bottom: 100px;
+                /* Aumentar el margen inferior para crear separación antes del footer */
+            }
+
             .site-footer {
+                margin-top: 40px;
+                /* Aumentar el margen superior del footer para crear más espacio */
                 position: fixed;
                 /* Mantener el footer fijo al fondo de la pantalla */
                 bottom: 0;
                 /* Asegurarse de que esté en la parte inferior */
                 width: 100%;
                 /* Asegurar que ocupe todo el ancho de la pantalla */
-                z-index: 100;
-                /* Mantenerlo por encima de otros elementos */
-                margin-top: 30px;
-                /* Aumentar el margen superior para mayor separación */
+                z-index: 1;
+                /* Asegurarse de que esté por encima de otros elementos */
             }
 
             #viewport {
                 min-height: 100vh;
-                /* Asegurar que el contenido principal ocupe al menos toda la altura de la pantalla */
+                /* Asegurar que el contenido principal tenga altura suficiente */
                 display: flex;
-                /* Utilizar Flexbox para organizar verticalmente */
+                /* Mantener la estructura flexible */
                 flex-direction: column;
                 /* Alinear verticalmente */
             }
 
             #js-scroll-content {
                 flex-grow: 1;
-                /* Asegura que el contenido crezca para llenar el espacio */
+                /* Asegura que el contenido crezca para ocupar el espacio disponible */
             }
         }
 
@@ -108,7 +138,8 @@
     </style>
 </head>
 
-<body>
+<body class="body-fixed">
+
     <!-- Contenedor para el mensaje de cierre de sesión y la barra de progreso -->
     <div id="logoutNotificationContainer"
         style="display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999;">
@@ -149,6 +180,7 @@
             </div>
         </div>
     </header>
+
     <!-- Home  -->
     <div id="viewport">
         <div id="js-scroll-content">
@@ -234,7 +266,8 @@
                                     style="background-image: url(assets/images/gallery/about.jpg);">
                                 </div>
                                 <div class="play-btn-wp">
-                                    <a href="https://www.youtube.com/watch?v=FUCFJcBbSgA" data-fancybox="video" class="play-btn">
+                                    <a href="https://www.youtube.com/watch?v=FUCFJcBbSgA" data-fancybox="video"
+                                        class="play-btn">
                                         <i class="uil uil-play"></i>
 
                                     </a>
@@ -477,155 +510,185 @@
                     </div>
                 </div>
             </section>
+        </div>
 
-            <!-- Footer -->
-            <footer class="site-footer" id="contact"
-                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
-                <div class="bottom-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 text-center">
-                                <div class="copyright-text">
-                                    <p>Copyright &copy; 2024 <span class="name">Sabores Adaptados</span> All Rights
-                                        Reserved.
-                                    </p>
+        <!---------------------------------------------ChatBot---------------------------------------------->
+        <!-- CHAT BAR BLOCK -->
+        <div class="chat-bar-collapsible">
+            <button id="chat-button" type="button" class="collapsible">Chatbot
+                <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
+            </button>
+
+            <div class="content">
+                <div class="full-chat-block">
+                    <!-- Message Container -->
+                    <div class="outer-container">
+                        <div class="chat-container">
+                            <!-- Messages -->
+                            <div id="chatbox">
+                                <h5 id="chat-timestamp"></h5>
+                                <p id="botStarterMessage" class="botText"><span>Cargando...</span></p>
+                            </div>
+
+                            <!-- User input box -->
+                            <div class="chat-bar-input-block">
+                                <div id="userInput">
+                                    <input id="textInput" class="input-box" type="text" name="msg"
+                                        placeholder="'Enter' para enviar">
+                                    <p></p>
+                                </div>
+
+                                <div class="chat-bar-icons">
+                                    <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
+                                        onclick="heartButton()"></i>
+                                    <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
+                                        onclick="sendButton()"></i>
                                 </div>
                             </div>
+
+                            <div id="chat-bar-bottom">
+                                <p></p>
+                            </div>
+
                         </div>
-                        <button class="scrolltop"><i class="uil uil-angle-up"></i></button>
                     </div>
+
                 </div>
-            </footer>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-            <script>
-                $(document).ready(function () {
-                    const dni = new URLSearchParams(window.location.search).get("dni");
-
-                    $("#ver-recetas").on("click", function () {
-                        window.location.href = `/recipes.html?dni=${dni}`;
-                    });
-                });
-            </script>
-
-            <script>
-                $(document).ready(function () {
-                    // Obtener el `dni` de la URL actual
-                    const dni = new URLSearchParams(window.location.search).get("dni");
-
-                    // Si hay un `dni`, agregarlo al enlace de "Inicio"
-                    if (dni) {
-                        $("#inicio").attr("href", `home-patient.html?dni=${dni}`);
-                    }
-                });
-            </script>
-
-
-            <script>
-                $(document).ready(function () {
-                    const dni = new URLSearchParams(window.location.search).get("dni");
-
-                    if (dni) {
-                        $("#inicio").attr("href", `home-patient.html?dni=${dni}`); // Asegurar el `href` del enlace de "Inicio"
-                    }
-                });
-                $(document).ready(function () {
-                    $("a[href='index.html']").on("click", function (e) {
-                        e.preventDefault(); // Evitar la redirección automática
-
-                        // Mostrar el contenedor con el mensaje y la barra de progreso
-                        $("#logoutNotificationContainer").slideDown(); // Deslizar hacia abajo para mostrar
-
-                        // Animar la barra de progreso
-                        $("#logoutProgressBar .progress-bar")
-                            .removeClass("progress-bar-red") // Asegurarse de que no tenga clase de error
-                            .addClass("progress-bar-green") // Barra verde para éxito
-                            .animate({ width: "100%" }, 2000); // Animar para llenar la barra
-
-                        // Redirigir después de 2 segundos
-                        setTimeout(function () {
-                            window.location.href = "index.html"; // Redirigir a la página de inicio o login
-                        }, 2000);
-                    });
-                });
-
-            </script>
-
-            <!-- Script para propagar el `dni` al enlace "Inicio" -->
-            <script>
-                $(document).ready(function () {
-                    // Obtener el `dni` de la URL
-                    const params = new URLSearchParams(window.location.search);
-                    const dni = params.get("dni");
-
-                    // Si el `dni` está presente, propagarlo al enlace "Inicio"
-                    if (dni) {
-                        $("#home-link").attr("href", `home-patient.html?dni=${dni}`); // Mantener el `dni` en el enlace "Inicio"
-                        $("#recipes-link").attr("href", `recipes.html?dni=${dni}`); // Mantener el `dni` en el enlace "Ver Recetas"
-                    }
-                });
-            </script>
-            <script>
-                window.addEventListener("scroll", function () {
-                    const scrollTopButton = document.querySelector(".scrolltop");
-                    if (window.scrollY > 100) { // Si se desplaza más de 100px, mostrar el botón
-                        scrollTopButton.style.opacity = 1; // Hacer visible el botón
-                    } else {
-                        scrollTopButton.style.opacity = 0; // Ocultar el botón
-                    }
-                });
-
-                // Evento para hacer scroll hacia arriba cuando se hace clic en el botón
-                document.querySelector(".scrolltop").addEventListener("click", function () {
-                    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll suave hacia arriba
-                });
-            </script>
-            <!--google librarie-->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-            <!--recipes-->
-            <script src="assets/js/recipes.js"></script>
-
-            <!-- jquery  -->
-            <script src="assets/js/jquery-3.5.1.min.js"></script>
-
-            <!-- bootstrap -->
-            <script src="assets/js/bootstrap.min.js"></script>
-            <script src="assets/js/popper.min.js"></script>
-
-            <!-- fontawesome  -->
-            <script src="assets/js/font-awesome.min.js"></script>
-
-            <!-- swiper slider  -->
-            <script src="assets/js/swiper-bundle.min.js"></script>
-
-            <!-- mixitup -- filter  -->
-            <script src="assets/js/jquery.mixitup.min.js"></script>
-
-            <!-- fancy box  -->
-            <script src="assets/js/jquery.fancybox.min.js"></script>
-
-            <!-- parallax  -->
-            <script src="assets/js/parallax.min.js"></script>
-
-            <!-- gsap  -->
-            <script src="assets/js/gsap.min.js"></script>
-
-            <!-- scroll trigger  -->
-            <script src="assets/js/ScrollTrigger.min.js"></script>
-
-            <!-- scroll to plugin  -->
-            <script src="assets/js/ScrollToPlugin.min.js"></script>
-
-            <!-- smooth scroll  -->
-            <script src="assets/js/smooth-scroll.js"></script>
-
-            <!-- custom js  -->
-            <script src="assets/js/main.js"></script>
+            </div>
         </div>
-    </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                const dni = new URLSearchParams(window.location.search).get("dni");
+
+                $("#ver-recetas").on("click", function () {
+                    window.location.href = `/recipes.html?dni=${dni}`;
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                // Obtener el `dni` de la URL actual
+                const dni = new URLSearchParams(window.location.search).get("dni");
+
+                // Si hay un `dni`, agregarlo al enlace de "Inicio"
+                if (dni) {
+                    $("#inicio").attr("href", `home-patient.html?dni=${dni}`);
+                }
+            });
+        </script>
+
+
+        <script>
+            $(document).ready(function () {
+                const dni = new URLSearchParams(window.location.search).get("dni");
+
+                if (dni) {
+                    $("#inicio").attr("href", `home-patient.html?dni=${dni}`); // Asegurar el `href` del enlace de "Inicio"
+                }
+            });
+            $(document).ready(function () {
+                $("a[href='index.html']").on("click", function (e) {
+                    e.preventDefault(); // Evitar la redirección automática
+
+                    // Mostrar el contenedor con el mensaje y la barra de progreso
+                    $("#logoutNotificationContainer").slideDown(); // Deslizar hacia abajo para mostrar
+
+                    // Animar la barra de progreso
+                    $("#logoutProgressBar .progress-bar")
+                        .removeClass("progress-bar-red") // Asegurarse de que no tenga clase de error
+                        .addClass("progress-bar-green") // Barra verde para éxito
+                        .animate({ width: "100%" }, 2000); // Animar para llenar la barra
+
+                    // Redirigir después de 2 segundos
+                    setTimeout(function () {
+                        window.location.href = "index.html"; // Redirigir a la página de inicio o login
+                    }, 2000);
+                });
+            });
+
+        </script>
+
+        <!-- Script para propagar el `dni` al enlace "Inicio" -->
+        <script>
+            $(document).ready(function () {
+                // Obtener el `dni` de la URL
+                const params = new URLSearchParams(window.location.search);
+                const dni = params.get("dni");
+
+                // Si el `dni` está presente, propagarlo al enlace "Inicio"
+                if (dni) {
+                    $("#home-link").attr("href", `home-patient.html?dni=${dni}`); // Mantener el `dni` en el enlace "Inicio"
+                    $("#recipes-link").attr("href", `recipes.html?dni=${dni}`); // Mantener el `dni` en el enlace "Ver Recetas"
+                }
+            });
+        </script>
+        <script>
+            window.addEventListener("scroll", function () {
+                const scrollTopButton = document.querySelector(".scrolltop");
+                if (window.scrollY > 100) { // Si se desplaza más de 100px, mostrar el botón
+                    scrollTopButton.style.opacity = 1; // Hacer visible el botón
+                } else {
+                    scrollTopButton.style.opacity = 0; // Ocultar el botón
+                }
+            });
+
+            // Evento para hacer scroll hacia arriba cuando se hace clic en el botón
+            document.querySelector(".scrolltop").addEventListener("click", function () {
+                window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll suave hacia arriba
+            });
+        </script>
+
+        <!--chatbot-->
+        <script src="chatbot/js/chat.js"></script>
+        <script src="chatbot/js/responses.js"></script>
+
+        <!--google librarie-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!--recipes-->
+        <script src="assets/js/recipes.js"></script>
+
+        <!-- jquery  -->
+        <script src="assets/js/jquery-3.5.1.min.js"></script>
+
+        <!-- bootstrap -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+
+        <!-- fontawesome  -->
+        <script src="assets/js/font-awesome.min.js"></script>
+
+        <!-- swiper slider  -->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+
+        <!-- mixitup -- filter  -->
+        <script src="assets/js/jquery.mixitup.min.js"></script>
+
+        <!-- fancy box  -->
+        <script src="assets/js/jquery.fancybox.min.js"></script>
+
+        <!-- parallax  -->
+        <script src="assets/js/parallax.min.js"></script>
+
+        <!-- gsap  -->
+        <script src="assets/js/gsap.min.js"></script>
+
+        <!-- scroll trigger  -->
+        <script src="assets/js/ScrollTrigger.min.js"></script>
+
+        <!-- scroll to plugin  -->
+        <script src="assets/js/ScrollToPlugin.min.js"></script>
+
+        <!-- smooth scroll  -->
+        <script src="assets/js/smooth-scroll.js"></script>
+
+        <!-- custom js  -->
+        <script src="assets/js/main.js"></script>
 </body>
 
 </html>
