@@ -17,6 +17,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Estilos personalizados -->
     <style>
+        /* Color verde para el botón de confirmación */
+        .btn-confirm {
+            background-color: #13c93d !important;
+            /* Verde */
+            color: white;
+        }
+
+        /* Color rojo para el botón de cancelación */
+        .btn-cancel {
+            background-color: #eb0f0f !important;
+            /* Rojo */
+            color: white;
+        }
+
+        /* Cambiar el color de fondo al pasar el cursor */
+        .btn-confirm:hover {
+            background-color: #218838;
+            /* Verde oscuro */
+        }
+
+        .btn-cancel:hover {
+            background-color: #e74c3c;
+            /* Rojo más oscuro */
+        }
+
         /* Estilo para el modal para modificar el nivel de adaptación */
         #edit-level-modal {
             display: none;
@@ -30,7 +55,7 @@
             border: 1px sólido #ddd;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            max-width: 500px ;
+            max-width: 500px;
             max-height: 45vh !important;
             overflow: hidden;
         }
@@ -48,6 +73,19 @@
             color: white;
         }
 
+        .btn-red1 {
+            background-color: #e90e0e;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-red1:hover {
+            background-color: rgb(185, 18, 18);
+
+        }
+
+
         /* Estilo para el botón de cierre */
         #edit-level-modal .close {
             float: left;
@@ -61,10 +99,24 @@
             padding-right: 25px;
         }
 
-        @media (max-width: 375px) {
+        @media (max-width: 540px) {
             #edit-level-modal {
                 max-height: 55vh;
                 width: 90%;
+            }
+
+            .btn-red1 {
+                width: 200px;
+                height: autopx;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .btn-red1 {
+                width: 200px;
+                height: autopx;
+                margin-top: 10px;
             }
         }
 
@@ -430,7 +482,7 @@
                                 <li><a href="form.html">Agregar Pacientes</a></li>
                                 <li><a href="view-patients.html">Ver Pacientes</a></li>
                                 <li><a href="allRecipes.html">Ver Recetas</a></li>
-                                <li><a href="home1.html">Cerrar Sesión</a></li>
+                                <li><a href="index.html">Cerrar Sesión</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -545,23 +597,25 @@
                 function loadAllPatients() {
                     $.get("/admin/patients", function (patients) {
                         const content = patients.map(patient => `
-                <div class="swiper-slide col-lg-4">
-                    <div class="patient-card"> <!-- Clase para la vista inicial -->
-                        <h4>${patient.name} ${patient.surname}</h4>
-                        <p>DNI: ${patient.dni}</p>
-                        <p>Fecha de Nacimiento: ${patient.birthDate}</p>
-                        <p>Informe de Salud: ${patient.healthReport}</p>
-                        <p>Nivel de adaptación: ${patient.level}</p>
-                        <div class="action-buttons">
-                            <button class="btn-red" onclick="openEditLevelModal('${patient.dni}')">Modificar nivel de adaptación</button>
-                        </div>
-                    </div>
-                </div>
-            `).join("");
+                            <div class="swiper-slide col-lg-4">
+                                <div class="patient-card">
+                                    <h4>${patient.name} ${patient.surname}</h4>
+                                    <p>DNI: ${patient.dni}</p>
+                                    <p>Fecha de Nacimiento: ${patient.birthDate}</p>
+                                    <p>Informe de Salud: ${patient.healthReport}</p>
+                                    <p>Nivel de adaptación: ${patient.level}</p>
+                                    <div class="action-buttons">
+                                        <button class="btn-red" onclick="openEditLevelModal('${patient.dni}')">Modificar nivel de adaptación</button>
+                                        <button class="btn-red1" onclick="deletePatient('${patient.dni}')">Eliminar paciente</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join("");
 
-                        $("#patient-list").html(content); // Añadir al DOM
+                        $("#patient-list").html(content);
                     });
                 }
+
 
                 // Cargar todos los pacientes al iniciar
                 loadAllPatients(); // Usa el diseño para la vista inicial
@@ -569,29 +623,30 @@
                 // Función para crear tarjetas para la búsqueda por DNI
                 function createPatientCard(patient) {
                     return `
-            <div class="patient-container" id="patient-container">
-                <div class="patient-card-search"> <!-- Clase para la búsqueda por DNI -->
-                    <h4>${patient.name} ${patient.surname}</h4>
-                    <p>DNI: ${patient.dni}</p>
-                    <p>Fecha de Nacimiento: ${patient.birthDate}</p>
-                    <p>Informe de Salud: ${patient.healthReport}</p>
-                    <p>Nivel de adaptación: ${patient.level}</p>
-                    <div class="action-buttons">
-                        <button class="btn-red" onclick="openEditLevelModal('${patient.dni}')">Modificar nivel de adaptación</button>
-                    </div>
-                </div>
-            </div>
-        `;
+                        <div class="patient-container" id="patient-container">
+                            <div class="patient-card-search">
+                                <h4>${patient.name} ${patient.surname}</h4>
+                                <p>DNI: ${patient.dni}</p>
+                                <p>Fecha de Nacimiento: ${patient.birthDate}</p>
+                                <p>Informe de Salud: ${patient.healthReport}</p>
+                                <p>Nivel de adaptación: ${patient.level}</p>
+                                <div class="action-buttons">
+                                    <button class="btn-red" onclick="openEditLevelModal('${patient.dni}')">Modificar nivel de adaptación</button>
+                                    <button class="btn-red1" onclick="deletePatient('${patient.dni}')">Eliminar paciente</button> <!-- Agregar botón de eliminación -->
+                                </div>
+                            </div>
+                        </div>
+                    `;
                 }
 
-                // Función para buscar pacientes por DNI
+
                 function searchByDNI(dni) {
                     $.get("/admin/patients", function (patients) {
                         const filteredPatients = patients.filter(patient => patient.dni === dni);
 
                         if (filteredPatients.length > 0) {
-                            const content = filteredPatients.map(createPatientCard).join("");
-                            $("#patient-list").html(content); // Mostrar pacientes filtrados
+                            const content = filteredPatients.map(createPatientCard).join(""); // Usar la función actualizada
+                            $("#patient-list").html(content); // Añadir al DOM para mostrar pacientes filtrados
                         } else {
                             Swal.fire({
                                 title: 'DNI no registrado',
@@ -605,6 +660,7 @@
                         }
                     });
                 }
+
 
                 // Evento para buscar pacientes por DNI cuando se hace clic en el botón de búsqueda
                 $("#search-button").on("click", function () {
@@ -628,14 +684,61 @@
                 });
             });
 
-
-
-
             // Función para abrir el modal para editar el nivel
             function openEditLevelModal(dni) {
                 console.log("Modificar nivel para paciente con DNI:", dni); // Para depuración
                 // Lógica para abrir el modal para editar nivel de adaptación
             }
+
+            function deletePatient(dni) {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: 'Esta acción no se puede deshacer.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'No, cancelar',
+                    customClass: {
+                        confirmButton: 'btn-confirm', // Clase para el botón de confirmación
+                        cancelButton: 'btn-cancel'   // Clase para el botón de cancelación
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        confirmDeletePatient(dni); // Llamar a la función para confirmar la eliminación
+                    }
+                });
+            }
+
+            function confirmDeletePatient(dni) {
+                $.ajax({
+                    url: `/admin/patient/${dni}`, // Endpoint para eliminar al paciente
+                    type: 'DELETE',
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Paciente eliminado',
+                            text: 'El paciente ha sido eliminado exitosamente.',
+                            icon: 'success',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false
+                        });
+
+                        loadAllPatients(); // Recargar la lista de pacientes para reflejar la eliminación
+                    },
+                    error: function (xhr) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Hubo un problema al eliminar al paciente.',
+                            icon: 'error',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false
+                        });
+                    }
+                });
+            }
+
+
         </script>
 
         <script>
@@ -736,7 +839,7 @@
             });
 
             $(document).ready(function () {
-                $("a[href='home1.html']").on("click", function (e) {
+                $("a[href='index.html']").on("click", function (e) {
                     e.preventDefault();
 
                     $("#logoutNotificationContainer").slideDown();
@@ -745,7 +848,7 @@
                         .animate({ width: "100%" }, 2000);
 
                     setTimeout(function () {
-                        window.location.href = "home1.html";
+                        window.location.href = "index.html";
                     }, 2000);
                 });
             });

@@ -24,7 +24,7 @@
 
     <style>
         /* Media query para cuando la resolución es menor de 430 píxeles */
-        @media (max-width: 1280px) {
+        @media (max-width: 1023px) {
             .btn-save {
                 width: 90px !important;
                 /* Ancho reducido para pantallas pequeñas */
@@ -42,26 +42,131 @@
                 background: #146b28;
             }
 
-            .form-container {
+            #edit-recipe-modal {
+                position: fixed !important;
+                z-index: 1000 !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                background: rgba(255, 0, 0, 0) !important;
+                border: 1px solid #ffffff00 !important;
+                border-radius: 10px !important;
+                box-shadow: 0 10px 20px rgba(255, 255, 255, 0) !important;
                 max-width: 900px !important;
-
+                min-width: 400px !important;
+                max-height: 90px !important;
+                overflow-y: hidden !important;
             }
 
-            .modal {
-                position: fixed!important;
-                z-index: 1000!important;
-                top: 50%!important;
-                left: 50%!important;
-                transform: translate(-50%, -50%)!important;
-                background: white!important;
-                padding: 5px!important;
-                border: 1px solid #ddd!important;
-                border-radius: 10px!important;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)!important;
+            .modal-content {
                 max-width: 900px !important;
+                max-height: 900px !important;
+            }
+
+            .modal1 {
+                position: fixed !important;
+                z-index: 1000 !important;
+                top: 50% !important;
+                left: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                background: rgba(255, 255, 255, 0) !important;
+                border: 1px solid #ffffff00 !important;
+                border-radius: 10px !important;
+                box-shadow: 0 10px 20px rgba(255, 255, 255, 0) !important;
+                max-width: 900px !important;
+                max-height: 900px !important;
+                overflow-y: hidden !important;
             }
         }
 
+        @media (max-width: 280px) {
+            #edit-recipe-modal {
+                max-width: 271px !important;
+                min-width: 270px !important;
+            }
+        }
+        @media (min-width: 1024px) {
+            .btn-save {
+                width: 200px !important;
+                /* Ancho reducido para pantallas pequeñas */
+                height: 55px !important;
+                /* Altura reducida */
+                font-size: 0.9em;
+                /* Tamaño del texto reducido */
+                padding: px;
+                /* Relleno reducido */
+                background: #28a745;
+                color: white;
+            }
+
+            .btn-save:hover {
+                background: #146b28;
+            }
+
+            .form-container {
+                max-width: 700px !important;
+
+            }
+
+            #edit-recipe-modal {
+                max-width: 901px !important;
+                min-width: 900px !important;
+                margin-top: 20px;
+            }
+
+            .modal1 {
+                position: fixed !important;
+                z-index: 1000 !important;
+                top: 50% !important;
+                left: 50% !important;
+                background: rgba(255, 5, 5, 0) !important;
+                border: 1px solid #ffffff00 !important;
+                border-radius: 10px !important;
+                box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2) !important;
+                max-width: 900px !important;
+                max-height: 600px !important;
+                margin-top: 60px;
+            }
+        }
+
+        /* Media query para cuando la resolución es menor de 430 píxeles */
+        @media (min-width: 1025px) {
+            .btn-save {
+                width: 200px !important;
+                /* Ancho reducido para pantallas pequeñas */
+                height: 55px !important;
+                /* Altura reducida */
+                font-size: 0.9em;
+                /* Tamaño del texto reducido */
+                padding: px;
+                /* Relleno reducido */
+                background: #28a745;
+                color: white;
+            }
+
+            .btn-save:hover {
+                background: #146b28;
+            }
+
+            .form-container {
+                max-width: 700px !important;
+
+            }
+
+            .modal1 {
+                position: fixed !important;
+                z-index: 1000 !important;
+                top: 50% !important;
+                left: 50% !important;
+                background: rgba(255, 5, 5, 0) !important;
+                border: 1px solid #ffffff00 !important;
+                border-radius: 10px !important;
+                box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2) !important;
+                max-width: 900px !important;
+                max-height: 800px !important;
+                margin-top: 60px;
+            }
+        }
 
         #logoutNotificationContainer {
             position: fixed;
@@ -252,7 +357,7 @@
                                 <li><a href="form.html">Agregar Pacientes</a></li>
                                 <li><a href="view-patients.html">Ver Pacientes</a></li>
                                 <li><a href="allRecipes.html">Ver Recetas</a></li>
-                                <li><a href="home1.html">Cerrar Sesión</a></li>
+                                <li><a href="index.html">Cerrar Sesión</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -414,7 +519,7 @@
         </div>
 
         <!-- Modal para editar recetas -->
-        <div id="edit-recipe-modal" class="modal"
+        <div id="edit-recipe-modal" class="modal1"
             style="display: none; position: fixed; z-index: 1000; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 0px; border: 1px sólido #ddd; border-radius: 10px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); max-width: 1200px; max-height: 800px;">
             <div class="modal-content" style="text-align: center;">
                 <div style="display: flex; justify-content: flex-end;">
@@ -538,7 +643,7 @@
 
     <script>
         $(document).ready(function () {
-            $("a[href='home1.html']").on("click", function (e) {
+            $("a[href='index.html']").on("click", function (e) {
                 e.preventDefault(); // Prevenir la redirección automática
 
                 // Mostrar el contenedor con el mensaje y la barra de progreso
@@ -552,7 +657,7 @@
 
                 // Redirigir después de 2 segundos
                 setTimeout(function () {
-                    window.location.href = "home1.html"; // Redirigir a la página de inicio o login
+                    window.location.href = "index.html"; // Redirigir a la página de inicio o login
                 }, 2000);
             });
         });

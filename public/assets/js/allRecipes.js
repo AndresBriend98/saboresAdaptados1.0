@@ -267,7 +267,7 @@ $(document).ready(function () {
     document.head.appendChild(styleElement);
     // Modal para confirmación de eliminación de receta, con estilo más compacto
     const deleteRecipeModal = `
-        <div id="delete-recipe-modal" style="display: none; position: fixed; z-index: 1000; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 0px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); max-width: 500px; max-height: 500px">
+        <div id="delete-recipe-modal" style="display: none; position: fixed; z-index: 1000; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255, 5, 5, 0); padding: 0px; border: 1px solid rgba(255, 5, 5, 0); border-radius: 10px; box-shadow: 0 10px 20px rgba(255, 5, 5, 0); max-width: 500px; max-height: 500px">
             <div class="modal-content" style="text-align: center;">
                 <div style="display: flex; justify-content: flex-end;">
                     <span class="close" style="cursor: pointer; font-size: 30px;">&times;</span>

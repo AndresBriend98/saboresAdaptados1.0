@@ -273,6 +273,38 @@
         document.querySelector(".scrolltop").addEventListener("click", function () {
             window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll suave hacia arriba
         });
+
+        $(document).ready(function () {
+                $("a[href='index.html']").on("click", function (e) {
+                    e.preventDefault(); // Evitar la redirección automática
+
+                    // Mostrar el contenedor con el mensaje y la barra de progreso
+                    $("#logoutNotificationContainer").slideDown(); // Mostrar el mensaje de cierre de sesión
+
+                    // Animar la barra de progreso para el cierre de sesión
+                    $("#logoutProgressBar .progress-bar")
+                        .removeClass("progress-bar-red")
+                        .addClass("progress-bar-green")
+                        .animate({ width: "100%" }, 2000);
+
+                    // Llamar al endpoint de cierre de sesión
+                    $.post("/logout", function () {
+                        // Redirigir después de cerrar sesión
+                        setTimeout(function () {
+                            window.location.href = "index.html"; // Página a la que redirige después de cerrar sesión
+                        }, 2000);
+                    });
+                });
+
+            });
+
+            window.history.replaceState({}, "", "index.html"); // Reemplazar el estado actual del historial
+
+            window.addEventListener("pageshow", function (e) {
+                if (e.persisted) {
+                    window.location.href = "index.html"; // Redirigir si el usuario intenta volver
+                }
+            });
     </script>
     <!--google librarie-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

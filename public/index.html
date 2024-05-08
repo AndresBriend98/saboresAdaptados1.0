@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sabores Adaptados</title>
+    <title>Home - Sabores Adaptados</title>
     <link rel="icon" href="assets/images/faviicon/favicon.ico" />
     <!-- for icons  -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -21,49 +21,280 @@
     <link rel="stylesheet" href="chatbot/css/chat.css">
     <!-- font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @media (width: 375px) {
+            .sec-wp {
+                margin-bottom: 90px;
+                /* Agregar margen inferior para separar del footer */
+            }
+
+            .site-footer {
+                margin-top: 40px;
+                /* Aumentar el margen superior para separar del contenido */
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                z-index: 100;
+                /* Asegúrate de que esté por encima de otros elementos */
+            }
+
+            .site-footer {
+                position: fixed;
+                /* Asegurarse de que el footer esté fijo al fondo de la pantalla */
+                bottom: 0;
+                width: 100%;
+                z-index: 100;
+                /* Mantenerlo por encima de otros elementos */
+                margin-top: 40px;
+                /* Aumentar margen para separar del contenido */
+            }
+
+            #viewport {
+                min-height: 100vh;
+                /* Asegurar que el contenido principal ocupe al menos toda la altura de la pantalla */
+                display: flex;
+                /* Para mantener el footer al fondo */
+                flex-direction: column;
+                /* Organizar elementos verticalmente */
+            }
+
+            #js-scroll-content {
+                flex-grow: 1;
+                /* Asegura que el contenido principal crezca para ocupar el espacio */
+            }
+
+        }
+
+        @media (width: 280px) {
+            .img-small {
+                width: 100px !important;
+                /* Ancho reducido */
+                height: 100px !important;
+                /* Alto reducido */
+                object-fit: cover;
+                /* Asegurarse de que la imagen mantenga proporciones */
+            }
+
+            .btn-red {
+                margin-top: 10px;
+                /* Ajustar margen para adaptarse a las imágenes más pequeñas */
+            }
+
+            .sec-wp {
+                margin-bottom: 90px;
+                /* Agregar margen inferior para separar del footer */
+            }
+
+            .site-footer {
+                margin-top: 40px;
+                /* Aumentar el margen superior para separar del contenido */
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                z-index: 100;
+                /* Asegúrate de que esté por encima de otros elementos */
+            }
+
+            .site-footer {
+                position: fixed;
+                /* Asegurarse de que el footer esté fijo al fondo de la pantalla */
+                bottom: 0;
+                width: 100%;
+                z-index: 100;
+                /* Mantenerlo por encima de otros elementos */
+                margin-top: 40px;
+                /* Aumentar margen para separar del contenido */
+            }
+
+            #viewport {
+                min-height: 100vh;
+                /* Asegurar que el contenido principal ocupe al menos toda la altura de la pantalla */
+                display: flex;
+                /* Para mantener el footer al fondo */
+                flex-direction: column;
+                /* Organizar elementos verticalmente */
+            }
+
+            #js-scroll-content {
+                flex-grow: 1;
+                /* Asegura que el contenido principal crezca para ocupar el espacio */
+            }
+        }
+
+        @media (width: 360px) {
+            .sec-wp {
+                margin-bottom: 90px;
+                /* Agregar margen inferior para separar del footer */
+            }
+
+            .site-footer {
+                margin-top: 40px;
+                /* Aumentar el margen superior para separar del contenido */
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                z-index: 100;
+                /* Asegúrate de que esté por encima de otros elementos */
+            }
+
+            .site-footer {
+                position: fixed;
+                /* Asegurarse de que el footer esté fijo al fondo de la pantalla */
+                bottom: 0;
+                width: 100%;
+                z-index: 100;
+                /* Mantenerlo por encima de otros elementos */
+                margin-top: 40px;
+                /* Aumentar margen para separar del contenido */
+            }
+
+            #viewport {
+                min-height: 100vh;
+                /* Asegurar que el contenido principal ocupe al menos toda la altura de la pantalla */
+                display: flex;
+                /* Para mantener el footer al fondo */
+                flex-direction: column;
+                /* Organizar elementos verticalmente */
+            }
+
+            #js-scroll-content {
+                flex-grow: 1;
+                /* Asegura que el contenido principal crezca para ocupar el espacio */
+            }
+
+        }
+
+        /* Ajustar la altura de la sección para centrar verticalmente */
+        .main-banner {
+            min-height: 60vh;
+            /* Reducir altura para mover contenido hacia arriba */
+            display: flex;
+            align-items: flex-start;
+            /* Alineación superior para comenzar el contenido desde arriba */
+            justify-content: center;
+            /* Centrar horizontalmente */
+            padding-top: 30px;
+            /* Ajustar el padding superior */
+        }
+
+        .sec-wp {
+            padding-top: 100px;
+            /* Reducir el padding superior para desplazar hacia arriba */
+        }
+
+        .form-container {
+            width: 50%;
+            /* Ancho ajustable del contenedor */
+            margin: 0 auto;
+            /* Centrar el contenedor */
+            background: rgba(255, 255, 255, 0.8);
+            /* Fondo translúcido */
+            padding: 15px;
+            /* Reducir padding para acercar el contenido */
+            border-radius: 10px;
+            /* Bordes redondeados */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            /* Sombra suave */
+            margin-bottom: 200px;
+            /* Añadir margen inferior para separar del footer */
+        }
+
+        .site-footer {
+            position: fixed;
+            /* Mantener el footer fijo al fondo de la pantalla */
+            bottom: 0;
+            /* Asegurarse de que esté en la parte inferior */
+            width: 100%;
+            /* Asegurar que ocupe todo el ancho de la pantalla */
+            z-index: 100;
+            margin-top: 100px;
+            /* Añadir margen superior para separar del formulario */
+            /* Para mantenerlo por encima de otros elementos */
+        }
+
+        .img-small {
+            width: 300px;
+            /* Ancho de la imagen */
+            height: 300px;
+            /* Alto de la imagen */
+            object-fit: cover;
+            /* Asegura que la imagen mantenga sus proporciones */
+            border-radius: 50%;
+            /* Opcional, para hacer la imagen redonda */
+        }
+
+        /* Estilo para el botón con hover y transición suave */
+        .btn-red {
+            background-color: #ff8243;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+            /* Transición suave para el hover */
+        }
+
+        /* Efecto hover para el botón */
+        .btn-red:hover {
+            background-color: rgb(224, 93, 6);
+            /* Color más oscuro al pasar el cursor */
+            color: white;
+            /* Mantener el color del texto */
+            transform: scale(1.05);
+            /* Un pequeño efecto de escala para animación */
+        }
+
+        #redirect-notification-container {
+            position: fixed;
+            bottom: 0;
+            /* Mantener en la parte inferior de la página */
+            left: 0;
+            width: 100%;
+            /* Ocupar todo el ancho */
+            z-index: 999;
+            /* Asegurarse de que esté por encima de otros elementos */
+            background-color: #f8f9fa;
+            /* Fondo para el contenedor */
+            padding: 10px;
+            /* Espaciado interno */
+        }
+
+        .progress-bar-green {
+            background-color: #28a745;
+            /* Color verde para la barra de carga */
+        }
+
+        .alert-success {
+            color: #28a745;
+            /* Color del texto para el mensaje de redirigiendo */
+            background-color: #d4edda;
+            /* Fondo verde claro */
+            border-color: #c3e6cb;
+            /* Borde del mismo tono */
+        }
+    </style>
 </head>
 
-<body class="body-fixed">
+<body>
+    <div id="redirect-notification-container" style="display: none;">
+        <!-- Barra de progreso para redirigir -->
+        <div id="redirect-progress-bar" class="progress" style="height: 5px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-green" role="progressbar"
+                style="width: 0%;">
+            </div>
+        </div>
+
+        <!-- Mensaje de redireccionamiento -->
+        <div id="redirect-success-message" class="alert alert-success text-center">
+            Redirigiendo...
+        </div>
+    </div>
+
     <!-- Header  -->
     <header class="site-header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 mt-4">
                     <div class="header-logo">
-                        <a href="index.html">
-                            <img src="assets/images/logo.png" width="300" height="100" alt="Logo">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-10">
-                    <div class="main-navigation">
-                        <button class="menu-toggle"><span></span><span></span></button>
-                        <nav class="header-menu">
-                            <ul class="menu food-nav-menu">
-                                <li><a href="#home">Inicio</a></li>
-                                <li><a href="#about">¿Que ofrecemos?</a></li>
-                                <li><a href="#info">Sobre disfagia</a></li>
-                                <li><a href="#menu">Menu y Recetas</a></li>
-                                <li><a href="#gallery">Galeria</a></li>
-                                <!--<li><a href="#blog">Blog</a></li>-->
-                                <li><a href="#contact">Contacto</a></li>
-                            </ul>
-                        </nav>
-                        <div class="header-right">
-                            <!--<form action="#" class="header-search-form for-des">
-                                <input type="search" class="form-input" placeholder="Buscar...">
-                                <button type="submit">
-                                    <i class="uil uil-search"></i>
-                                </button>
-                            </form>-->
-                            <!--  <a href="javascript:void(0)" class="header-btn header-cart">
-                                <i class="uil uil-shopping-bag"></i>
-                                <span class="cart-number">3</span>
-                            </a>-->
-                            <!--  <a href="javascript:void(0)" class="header-btn">
-                                <i class="uil uil-user-md"></i>
-                            </a> -->
-                        </div>
+                        <img src="assets/images/logo.png" width="300" height="100" alt="Logo">
                     </div>
                 </div>
             </div>
@@ -73,7 +304,8 @@
     <!-- Home  -->
     <div id="viewport">
         <div id="js-scroll-content">
-            <section class="main-banner" id="home" style="background-image: url(assets/images/background/blog-pattern-bg.png);">
+            <section class="main-banner" id="home"
+                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
                 <div class="book-table-shape">
                     <img src="assets/images/background/table-leaves-shape.png" alt="">
                 </div>
@@ -92,1329 +324,10 @@
                 <div class="sec-wp">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="banner-text">
-                                    <h1 class="h1-title">
-                                        Bienvenidos,
-                                        <span>Sabores Adaptados</span>
-                                    </h1>
-                                    <p>Diversión en la cocina, seguridad en cada plato. Nuestras recetas adaptadas lo
-                                        tienen todo.</p>
-                                    <div class="banner-btn mt-4">
-                                        <a href="#menu" class="sec-btn">Ver menu</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="banner-img-wp">
-                                    <div class="banner-img" style="background-image: url(assets/images/background/main-b.jpg);">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-        <!--What we offer-->
-            <section class="about-sec section" id="about" style="background-image: url(assets/images/background/blog-pattern-bg.png);">
-                <div class="book-table-shape">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-
-                <div class="book-table-shape book-table-shape2">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="sec-title text-center mb-5">
-                                <p class="sec-sub-title mb-3">¿Que ofrecemos?</p>
-                                <h2 class="h2-title">Mejora tu calidad<span>de vida</span></h2>
-                                <div class="sec-title-shape mb-4">
-                                    <img src="assets/images/figure/title-shape.svg" alt="">
-                                </div>
-                                <p>Búsqueda de nuevos productos alimenticios con texturas modificadas o adaptadas que
-                                    faciliten una adecuada nutrición en personas con disfagia. La adaptación de texturas
-                                    en alimentos y
-                                    bebidas es de vital importancia para estas personas, ya que ayuda a garantizar una
-                                    deglución segura y eficaz
-                                    minimizando los riesgos derivados de la misma, a la vez que da confianza a la
-                                    persona ya que disminuye el miedo
-                                    a atragantarse, razón por la que a menudo estos pacientes suelen disminuir su
-                                    ingesta de alimentos y bebidas,
-                                    afectando negativamente a su estado de salud, pudiéndoles llevar a un estado de
-                                    deshidratación o desnutrición y
-                                    a un empeoramiento del curso de la enfermedad.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-8 m-auto">
-                            <div class="about-video">
-                                <div class="about-video-img" style="background-image: url(assets/images/gallery/about.jpg);">
-                                </div>
-                                <div class="play-btn-wp">
-                                    <a href="assets/images/videos/video.mp4" data-fancybox="video" class="play-btn">
-                                        <i class="uil uil-play"></i>
-
-                                    </a>
-                                    <span>Ver video</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!--Types of dysphagia-->
-            <section class="dysphagia-types section" id="info" style="background-image: url(assets/images/background/blog-pattern-bg.png);">
-                <div class="book-table-shape">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-
-                <div class="book-table-shape book-table-shape2">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="sec-title text-center mb-5">
-                                <p class="sec-sub-title mb-3">Sobre disfagia</p>
-                                <h2 class="h2-title">Tipos de Disfagia</h2>
-                                <div class="sec-title-shape mb-4">
-                                    <img src="assets/images/figure/title-shape.svg" alt="">
-                                </div>
-                                <div class="sec-title-shape mb-4">
-                                    <img src="assets/images/title-shape.svg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="dysphagia-card">
-                                <h3>Disfagia Orofaringea</h3>
-                                <p>La disfagia orofaríngea se refiere a la dificultad para
-                                    transportar alimentos y líquidos desde la boca hasta la faringe y
-                                    el esófago. Suele ser causada por problemas en la coordinación de
-                                    los músculos de la boca y la garganta, como daño neurológico,
-                                    trastornos musculares o anomalías estructurales.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="dysphagia-card">
-                                <h3>Disfagia Faringea</h3>
-                                <p>La disfagia faríngea implica dificultades en la faringe durante el
-                                    proceso de deglución. Esto puede deberse a trastornos neuromusculares,
-                                    lesiones cerebrales o compresión de la vía aérea. Los síntomas pueden
-                                    incluir tos, ahogo o dolor al tragar.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="dysphagia-card">
-                                <h3>Disfagia Esofagica</h3>
-                                <p>La disfagia esofágica se caracteriza por la dificultad para
-                                    trasladar alimentos a través del esófago. A menudo se debe a
-                                    obstrucciones físicas, enfermedades como el reflujo gastroesofágico,
-                                    o problemas de motilidad del esófago. Los pacientes pueden sentir
-                                    una sensación de atascamiento y dolor torácico.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-8 m-auto mt-5">
-                                <div class="about-video">
-                                    <div class="about-video-img"
-                                        style="background-image: url(assets/images/gallery/about.png);">
-                                    </div>
-                                    <div class="play-btn-wp">
-                                        <a href="assets/images/videos/disfagia.mp4" data-fancybox="video" class="play-btn">
-                                            <i class="uil uil-play"></i>
-
-                                        </a>
-                                        <span>Ver video</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!--Menu and recipes-->
-            <section style="background-image: url(assets/images/background/menu-bg.png);" 
-                class="our-menu section bg-light repeat-img" id="menu">
-                <div class="book-table-shape">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-
-                <div class="book-table-shape book-table-shape2">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-                <div class="sec-wp">
-                    <div class="container">
-                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="sec-title text-center mb-5">
-                                    <p class="sec-sub-title mb-3">Menu y Recetas</p>
-                                    <h2 class="h2-title">Alimentese de forma <span> Segura y Nutritiva </span></h2>
-                                    <div class="sec-title-shape mb-4">
-                                        <img src="assets/images/figure/title-shape.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu-tab-wp">
-                            <div class="row">
-                                <div class="col-lg-12 m-auto">
-                                    <div class="menu-tab text-center">
-                                        <ul class="filters">
-                                            <div class="filter-active"></div>
-                                            <li class="filter" data-filter=".all, .breakfast, .lunch, .dinner, .drinks, .desserts">
-                                                <img src="assets/images/menu/menu-1.png" alt="">
-                                                Todos
-                                            </li>
-                                            <li class="filter" data-filter=".breakfast">
-                                                <img src="assets/images/menu/menu-2.png" alt="">
-                                                Desayuno
-                                            </li>
-                                            <li class="filter" data-filter=".lunch">
-                                                <img src="assets/images/menu/menu-3.png" alt="">
-                                                Almuerzo
-                                            </li>
-                                            <li class="filter" data-filter=".drinks">
-                                                <img src="assets/images/menu/menu-4.png" alt="">
-                                                Bebida
-                                            </li>
-                                            <li class="filter" data-filter=".dinner">
-                                                <img src="assets/images/menu/menu-2.png" alt="">
-                                                Cena
-                                            </li>
-                                            <li class="filter" data-filter=".desserts">
-                                                <img src="assets/images/menu/menu-1.png" alt="">
-                                                Postre
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="menu-list-row">
-                            <div class="row g-xxl-5 bydefault_show" id="menu-dish">
-                                <!--breakfast-->
-                                <!--1-->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp breakfast" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/1.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Café con leche</h3>
-                                            <p>59 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Desayuno</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-1" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                                                       
-
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-1" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Texturas:</h4>
-                                                <lu>
-                                                    <li>Néctar (2 cacitos)</li>
-                                                    <li>Miel (2 cacitos y 1⁄2)</li>
-                                                    <li>Pudding (3 cacitos)</li>
-                                                </lu>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>50 ml de café</li>
-                                                    <li>100 ml de leche semidesnatada</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>Cucharadita de azúcar</li>
-                                                    <li>Espesante</li>
-                                                    <li>Juntar todos los ingredientes y añadir la cantidad de espesante
-                                                        indicada hasta alcanzar las diferentes texturas.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 2 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp breakfast" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/2.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Leche con cereales (pudding) </h3>
-                                            <p>282 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Desayuno</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-2" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-2" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>200 ml de leche desnatada</li>
-                                                    <li>30 g de cereales</li>
-                                                    <li>2 cacitos de espesante </li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>En un recipiente, añadir los cereales con la leche y triturar.</li>
-                                                    <li>Añadir la cantidad de espesante indicada y mezclar.</li>
-                                                    <li>Servir.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 3 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp lunch" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/3.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Magdalenas (pudding)</h3>
-                                            <p>130 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Desayuno</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-3" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-3" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>50 g de magdalena</li>
-                                                    <li>50 cc de agua</li>
-                                                    <li>1 cacito de espesante</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>En un recipiente, añadir la magdalena con el agua y triturar.</li>
-                                                    <li>Añadir la cantidad de espesante indicada y mezclar.</li>
-                                                    <li>Servir en un plato o bol.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 4 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp lunch" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/4.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Galletas (pudding) </h3>
-                                            <p>350 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Desayuno</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-4" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-4" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>12 g de galletas</li>
-                                                    <li>1 cucharada pequeña de azúcar n 1 cacito de espesante </li>
-                                                    <li>30 ml de agua </li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>En un recipiente, añadir las galletas junto con el agua y el azúcar.</li>
-                                                    <li>Triturar con una batidora o similar hasta obtener una textura fina.</li>
-                                                    <li>Añadir la cantidad de espesante  indicada y mezclar hasta obtener la textura adecuada.</li>
-                                                    <li>Servir.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 5 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Mandarina fresca (pudding) </h3>
-                                            <p>37 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Desayuno</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>2 mandarinas medianas (180 g)</li>
-                                                    <li>1 cucharada pequeña de azúcar</li>
-                                                    <li>1 cacito de espesante</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>En un recipiente, triturar con batidora o similar las dos mandarinas junto con la cucharada de azúcar.</li>
-                                                    <li>Añadir la cantidad de espesante  indicada hasta obtener una textura homogénea y correcta.</li>
-                                                    <li>Servir.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 6 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Cruasán (pudding)</h3>
-                                            <p>398 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Desayuno</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>1 cruasán</li>
-                                                    <li>150 ml de leche semidesnatada</li>
-                                                    <li>1⁄2 cacitos de espesante</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>En un recipiente, añadir el cruasán con la leche semidesnatada y triturar.</li>
-                                                    <li>Añadir la cantidad de espesante  indicada y volver a triturar.</li>
-                                                    <li>Emplatar.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 7 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Leche de soja con café o cacao</h3>
-                                            <p>149 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Desayuno</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Texturas:</h4>
-                                                <lu>
-                                                    <li>Néctar (3 cacitos)</li>
-                                                    <li>Miel (4 cacitos)</li>
-                                                    <li>Pudding (6 cacitos)</li>
-                                                </lu>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>200 ml de leche de soja</li>
-                                                    <li>2 cucharaditas de café soluble (Eko®) o 2 cucharaditas de cacao (Nesquick®)</li>
-                                                    <li>Espesante</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>Mezclar la leche con el café o cacao.</li>
-                                                    <li>Añadir la cantidad de espesante indicada hasta alcanzar las diferentes</li>
-                                                    <li>Servir en un bol.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Drinks -->
-                                <!-- 1 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="drinks">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Café con leche</h3>
-                                            <p>59 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Bebida</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Texturas:</h4>
-                                                <lu>
-                                                    <li>Néctar (2 cacitos)</li>
-                                                    <li>Miel (2 cacitos y 1⁄2)</li>
-                                                    <li>Pudding (3 cacitos)</li>
-                                                </lu>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>50 ml de café</li>
-                                                    <li>100 ml de leche semidesnatada</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>Cucharadita de azúcar</li>
-                                                    <li>Espesante</li>
-                                                    <li>Juntar todos los ingredientes y añadir la cantidad de espesante
-                                                        indicada hasta alcanzar las diferentes texturas.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 2 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="drinks">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Jugo de Naranja</h3>
-                                            <p>45 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Bebida</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Texturas:</h4>
-                                                <lu>
-                                                    <li>Néctar (3 cacitos)</li>
-                                                    <li>Miel (4 cacitos y 1⁄2)</li>
-                                                    <li>Pudding (6 cacitos)</li>
-                                                </lu>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>200 cc de jugo de naranja natural (aprox. 2-3 naranjas)</li>
-                                                    <li>Espesante.</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>En un recipiente, añadir el jugo de naranja junto con la cantidad de espesante indicada y batir hasta alcanzar las diferentes texturas.</li>
-                                                    <li>Servir en una copa.</li>
-                                                    <li>Decorar con una hojita de menta.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 3 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="drinks">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Agua con Miel y Limón</h3>
-                                            <p>61 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Bebida</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Texturas:</h4>
-                                                <lu>
-                                                    <li>Néctar (2 cacitos y 1⁄2)</li>
-                                                    <li>Miel (3 cacitos)</li>
-                                                    <li>Pudding (4 cacitos)</li>
-                                                </lu>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>135 ml de agua.</li>
-                                                    <li>15 ml de jugo de limón.</li>
-                                                    <li>2 cucharadas pequeñas de miel (20 g)</li>
-                                                    <li>Espesante</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>Calentar el agua y añadir el jugo de limón y las 2 cucharadas de miel.</li>
-                                                    <li>Añadir la cantidad de espesante indicada para cada textura y mezclar durante 1 minuto. </li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 3 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="drinks">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Copa de Vino Tinto</h3>
-                                            <p>150 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Bebida</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Texturas:</h4>
-                                                <lu>
-                                                    <li>Néctar (1 cacitos y 1⁄2)</li>
-                                                    <li>Miel (2 cacitos)</li>
-                                                    <li>Pudding (2 cacitos y 1⁄2)</li>
-                                                </lu>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>100 ml de vino tinto.</li>
-                                                    <li>Espesante. </li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>Añadir al vino tinto la cantidad de espesante indicada hasta alcanzar las diferentes texturas.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 4 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="drinks">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Vino con Gaseosa</h3>
-                                            <p>120 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Bebida</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-5">Texturas:</h4>
-                                                <lu>
-                                                    <li>Pudding (4 cacitos)</li>
-                                                </lu>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>50 cc de vino tinto.</li>
-                                                    <li>150 cc de gaseosa</li>
-                                                    <li>4 cacitos de espesante.</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>Mezclar el vino con gaseosa.</li>
-                                                    <li>Añadir la cantidad de espesante indicada y mezclar con ayuda de una cuchara. </li>
-                                                    <li>Servir en una copa. </li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Lunch -->
-                                <!-- 1 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="lunch">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h4-title">Ensalada (Lechuga,Tomate, Guarnición) (pudding)</h3>
-                                            <p>147 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Almuerzos</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>100 g de lechuga</li>
-                                                    <li>1 tomate pequeño o ½ grande (50g) </li>
-                                                    <li>50 ml agua</li>
-                                                    <li>Aceite/Vinagre y sal </li>
-                                                    <li>5 cacitos de espesante</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>Triturar la lechuga (aliñada) con el agua y añadir 2 cacitos de espesante.</li>
-                                                    <li>Triturar el tomate (no hace falta agua) y añadir 3 cacitos de espesante.</li>
-                                                    <li>Emplatar.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 2 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="lunch">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Espinacas con Garbanzos (pudding)</h3>
-                                            <p>283 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Almuerzos</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-4">Ingredientes (4 raciónes):</h4>
-                                                <lu>
-                                                    <li>400 g de espinacas </li>
-                                                    <li>1 bote de garbanzos </li>
-                                                    <li>Ajo </li>
-                                                    <li>Sal </li>
-                                                    <li>Aceite</li>
-                                                </lu>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>100g de espinacas </li>
-                                                    <li>30g de garbanzos </li>
-                                                    <li>5 cc de aceite</li>
-                                                    <li>200 cc de agua</li>
-                                                    <li>2 cacitos de espesante</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>Hervir las espinacas con poco agua, escurrir y reservar. </li>
-                                                    <li>En una sartén con aceite, freír el ajo a trocitos y los garbanzos.</li>
-                                                    <li>Añadir las espinacas bien escurridas y remover.</li>
-                                                    <li>Separar una ración y añadirla en un recipiente para triturar con el agua y la cantidad de espesante indicada, triturar con la batidora.</li>
-                                                    <li>Servir en un bol o plato.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 3 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="lunch">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/recipes/5.png" alt="">
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Macarrones (pudding)</h3>
-                                            <p>283 calorias aprox</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Listo en</p>
-                                                    <b>5 min</b>
-                                                </li>
-                                                <li>
-                                                    <p>Tipo</p>
-                                                    <b>Almuerzos</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <button id="open-recipe-modal-5" class="dish-add-btn">Ver receta</button>
-                                                </li>
-                                                <li style="margin-left: 20px;">
-                                                    <a href="assets/images/downloadRecipes/1.png" download class="dish-add-btn-download" title="Descargar Imagen">
-                                                        <i class="uil uil-arrow-to-bottom"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- Modal -->
-                                        <div id="recipe-modal-5" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close-button">&times;</span>
-                                                <h4 class="mt-4">Ingredientes (4 raciónes):</h4>
-                                                <lu>
-                                                    <li>400 g de espinacas </li>
-                                                    <li>1 bote de garbanzos </li>
-                                                    <li>Ajo </li>
-                                                    <li>Sal </li>
-                                                    <li>Aceite</li>
-                                                </lu>
-                                                <h4 class="mt-4">Ingredientes (1 ración):</h4>
-                                                <lu>
-                                                    <li>100g de espinacas </li>
-                                                    <li>30g de garbanzos </li>
-                                                    <li>5 cc de aceite</li>
-                                                    <li>200 cc de agua</li>
-                                                    <li>2 cacitos de espesante</li>
-                                                </lu>
-                                                <h4 class="mt-4">Preparación:</h4>
-                                                <ol>
-                                                    <li>Hervir las espinacas con poco agua, escurrir y reservar. </li>
-                                                    <li>En una sartén con aceite, freír el ajo a trocitos y los garbanzos.</li>
-                                                    <li>Añadir las espinacas bien escurridas y remover.</li>
-                                                    <li>Separar una ración y añadirla en un recipiente para triturar con el agua y la cantidad de espesante indicada, triturar con la batidora.</li>
-                                                    <li>Servir en un bol o plato.</li>
-                                                </ol>
-                                                <div class="about-video">
-                                                    <div class="play-btn-wp1">
-                                                        <a href="assets/images/videos/video.mp4" data-fancybox="video"
-                                                            class="play-btn1">
-                                                            <i class="uil uil-play"></i>
-
-                                                        </a>
-                                                        <span>Ver video instructivo</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="book-table section bg-light" style="background-image: url(assets/images/background/blog-pattern-bg.png);">
-                <div class="book-table-shape">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-
-                <div class="book-table-shape book-table-shape2">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-
-                <div class="sec-wp">
-                    <div class="container">
-                        <div class="row" id="gallery">
-                            <div class="col-lg-10 m-auto">
-                                <div class="book-table-img-slider" id="icon">
-                                    <div class="swiper-wrapper">
-                                        <a href="assets/images/gallery/bt1.jpg" data-fancybox="table-slider"
-                                            class="book-table-img back-img swiper-slide"
-                                            style="background-image: url(assets/images/gallery/bt1.jpg)"></a>
-                                        <a href="assets/images/gallery/bt2.jpg" data-fancybox="table-slider"
-                                            class="book-table-img back-img swiper-slide"
-                                            style="background-image: url(assets/images/gallery/bt2.jpg)"></a>
-                                        <a href="assets/images/gallery/bt4.jpg" data-fancybox="table-slider"
-                                            class="book-table-img back-img swiper-slide"
-                                            style="background-image: url(assets/images/gallery/bt4.jpg)"></a>
-                                        <a href="assets/images/gallery/bt1.jpg" data-fancybox="table-slider"
-                                            class="book-table-img back-img swiper-slide"
-                                            style="background-image: url(assets/images/gallery/bt1.jpg)"></a>
-                                        <a href="assets/images/gallery/bt2.jpg" data-fancybox="table-slider"
-                                            class="book-table-img back-img swiper-slide"
-                                            style="background-image: url(assets/images/gallery/bt2.jpg)"></a>
-                                        <a href="assets/images/gallery/bt4.jpg" data-fancybox="table-slider"
-                                            class="book-table-img back-img swiper-slide"
-                                            style="background-image: url(assets/images/gallery/bt4.jpg)"></a>
-                                    </div>
-
-                                    <div class="swiper-button-wp">
-                                        <div class="swiper-button-prev swiper-button">
-                                            <i class="uil uil-angle-left"></i>
-                                        </div>
-                                        <div class="swiper-button-next swiper-button">
-                                            <i class="uil uil-angle-right"></i>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-pagination"></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-            </section>
-
-            <!--About us-->
-            <section class="our-team section" style="background-image: url(assets/images/background/blog-pattern-bg.png);">
-                <div class="book-table-shape">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-
-                <div class="book-table-shape book-table-shape2">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-                <div class="sec-wp">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="sec-title text-center mb-5">
-                                    <p class="sec-sub-title mb-3">Sobre nosotros</p>
-                                    <h2 class="h2-title">Conoce al equipo de fonoaudiólogos</h2>
+                                    <p class="sec-sub-title mb-3">Bienvenidos</p>
+                                    <h2 class="h2-title">Sabores Adaptados</h2>
                                     <div class="sec-title-shape mb-4">
                                         <img src="assets/images/figure/title-shape.svg" alt="">
                                     </div>
@@ -1424,426 +337,28 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row team-slider">
-                            <div class="swiper-wrapper">
-                                <div class="col-lg-4 swiper-slide">
-                                    <div class="team-box text-center">
-                                        <div style="background-image: url(assets/images/team/c1.jpg);"
-                                            class="team-img back-img">
 
-                                        </div>
-                                        <h3 class="h3-title">Ana Petenatti</h3>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a><i class="uil uil-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a>
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 swiper-slide">
-                                    <div class="team-box text-center">
-                                        <div style="background-image: url(assets/images/team/c2.jpg);"
-                                            class="team-img back-img">
-
-                                        </div>
-                                        <h3 class="h3-title">Sofia Cuenya</h3>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a><i class="uil uil-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a>
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 swiper-slide">
-                                    <div class="team-box text-center">
-                                        <div style="background-image: url(assets/images/team/c3.jpg);"
-                                            class="team-img back-img">
-
-                                        </div>
-                                        <h3 class="h3-title">Malena Caceres</h3>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <!--add  href="link perfil"-->
-                                                    <a><i class="uil uil-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a>
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 swiper-slide">
-                                    <div class="team-box text-center">
-                                        <div style="background-image: url(assets/images/team/c4.jpg);"
-                                            class="team-img back-img">
-
-                                        </div>
-                                        <h3 class="h3-title">Andrea Saucedo</h3>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a><i class="uil uil-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a>
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-button-wp">
-                                    <div class="swiper-button-prev swiper-button">
-                                        <i class="uil uil-angle-left"></i>
-                                    </div>
-                                    <div class="swiper-button-next swiper-button">
-                                        <i class="uil uil-angle-right"></i>
-                                    </div>
-                                </div>
-                                <div class="swiper-pagination"></div>
-                            </div>
-                        </div>
-                    </div>
-            </section>
-
-            <!--testimonials-->
-            <section class="testimonials section bg-light" style="background-image: url(assets/images/background/blog-pattern-bg.png);">
-                <div class="book-table-shape">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-
-                <div class="book-table-shape book-table-shape2">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-                <div class="sec-wp">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="sec-title text-center mb-5">
-                                    <p class="sec-sub-title mb-3">Ustedes</p>
-                                    <h2 class="h2-title">Que opinan los pacientes<span>sobre nosotros</span></h2>
-                                    <div class="sec-title-shape mb-4">
-                                        <img src="assets/images/figure/title-shape.svg" alt="">
-                                    </div>
-                                    <div class="sec-title-shape mb-4">
-                                        <img src="assets/images/title-shape.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <div class="testimonials-img">
-                                    <img src="assets/images/testimonials/testimonial-img.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="testimonials-box">
-                                            <div class="testimonial-box-top">
-                                                <div class="testimonials-box-img back-img"
-                                                    style="background-image: url(assets/images/testimonials/t1.jpg);">
-                                                </div>
-                                                <div class="star-rating-wp">
-                                                    <div class="star-rating">
-                                                        <span class="star-rating__fill" style="width:85%"></span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="testimonials-box-text">
-                                                <h3 class="h3-title">
-                                                    Lucia Campayo
-                                                </h3>
-                                                <p>Excelentes recetas, me encantaron.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="testimonials-box">
-                                            <div class="testimonial-box-top">
-                                                <div class="testimonials-box-img back-img"
-                                                    style="background-image: url(assets/images/testimonials/t2.jpg);">
-                                                </div>
-                                                <div class="star-rating-wp">
-                                                    <div class="star-rating">
-                                                        <span class="star-rating__fill" style="width:80%"></span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="testimonials-box-text">
-                                                <h3 class="h3-title">
-                                                    Alfredo Dominguez
-                                                </h3>
-                                                <p>Sinceramente, mejoraron mis días, ¡gracias!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="testimonials-box">
-                                            <div class="testimonial-box-top">
-                                                <div class="testimonials-box-img back-img"
-                                                    style="background-image: url(assets/images/testimonials/t3.jpg);">
-                                                </div>
-                                                <div class="star-rating-wp">
-                                                    <div class="star-rating">
-                                                        <span class="star-rating__fill" style="width:89%"></span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="testimonials-box-text">
-                                                <h3 class="h3-title">
-                                                    Pedro Wildemer
-                                                </h3>
-                                                <p>Recetas fáciles de hacer, todo lo que buscaba, en un lugar.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="testimonials-box">
-                                            <div class="testimonial-box-top">
-                                                <div class="testimonials-box-img back-img"
-                                                    style="background-image: url(assets/images/testimonials/t4.jpg);">
-                                                </div>
-                                                <div class="star-rating-wp">
-                                                    <div class="star-rating">
-                                                        <span class="star-rating__fill" style="width:100%"></span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="testimonials-box-text">
-                                                <h3 class="h3-title">
-                                                    Josias Rodriguez
-                                                </h3>
-                                                <p>Fan de los videos instructivos, me facilitaron la preparación.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!--Frequent Questions (Maybe we implement)-->
-            <!-- \\\<section class="faq-sec section-repeat-img" style="background-image: url(assets/images/background/faq-bg.png);">
-                <div class="sec-wp">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="sec-title text-center mb-5">
-                                    <p class="sec-sub-title mb-3">Dudas</p>
-                                    <h2 class="h2-title">Preguntas <span>frecuentes</span></h2>
-                                    <div class="sec-title-shape mb-4">
-                                        <img src="assets/images/title-shape.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="faq-row">
-                            <div class="faq-box">
-                                <h4 class="h4-title">What are the login hours?</h4>
-                                <p>It is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus ipsum
-                                    vitae fugit laboriosam dolor distinctio.</p>
-                            </div>
-                            <div class="faq-box">
-                                <h4 class="h4-title">What do i get my refund?</h4>
-                                <p>It is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus ipsum
-                                    vitae fugit laboriosam dolor distinctio. Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div class="faq-box">
-                                <h4 class="h4-title">How long it will take food to arrive?</h4>
-                                <p>It is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus ipsum
-                                    vitae fugit laboriosam dolor distinctio.</p>
-                            </div>
-                            <div class="faq-box">
-                                <h4 class="h4-title">Does your restaurant has both veg and non veg?</h4>
-                                <p>It is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus ipsum
-                                    vitae fugit laboriosam dolor distinctio. Lorem ipsum, dolor sit amet consectetur
-                                    adipisicing elit. Voluptates, distinctio?</p>
-                            </div>
-                            <div class="faq-box">
-                                <h4 class="h4-title">What is cost of food delivery?</h4>
-                                <p>It is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus ipsum
-                                    vitae fugit laboriosam dolor distinctio. Lorem ipsum dolor sit amet consectetur,
-                                    adipisicing elit. Nam officiis ducimus, cum enim repudiandae animi.</p>
-                            </div>
-                            <div class="faq-box">
-                                <h4 class="h4-title">Who is eligible for pro membership?</h4>
-                                <p>It is Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus ipsum
-                                    vitae fugit laboriosam dolor distinctio. </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </section>-->
-
-
-            <div class="bg-pattern bg-light repeat-img"
-                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
-                <!--Latest Publications (NO IMPORTANT!)-->
-                <!--<section class="blog-sec section" id="blog">
-                    <div class="sec-wp">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="sec-title text-center mb-5">
-                                        <p class="sec-sub-title mb-3">Nuestro blog</p>
-                                        <h2 class="h2-title">Ultimas publicaciones</span></h2>
-                                        <div class="sec-title-shape mb-4">
-                                            <img src="assets/images/title-shape.svg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="blog-box">
-                                        <div class="blog-img back-img"
-                                            style="background-image: url(assets/images/blog/blog1.jpg);"></div>
-                                        <div class="blog-text">
-                                            <p class="blog-date">Enero.15.2024</p>
-                                            <a href="#" class="h4-title">Bebida energetica en tu casa.</a>
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur ipsa
-                                                explicabo atque reprehenderit beatae! Accusantium soluta consequuntur
-                                                blanditiis amet ad.</p>
-                                            <a href="#" class="sec-btn">Leer mas</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="blog-box">
-                                        <div class="blog-img back-img"
-                                            style="background-image: url(assets/images/blog/blog2.jpg);"></div>
-                                        <div class="blog-text">
-                                            <p class="blog-date">Marzo.10.2024</p>
-                                            <a href="#" class="h4-title">Verdura fresca y arroz.</a>
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur ipsa
-                                                explicabo atque reprehenderit beatae! Accusantium soluta consequuntur
-                                                blanditiis amet ad.</p>
-                                            <a href="#" class="sec-btn">Leer mas</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="blog-box">
-                                        <div class="blog-img back-img"
-                                            style="background-image: url(assets/images/blog/blog3.jpg);"></div>
-                                        <div class="blog-text">
-                                            <p class="blog-date">Abril.15.2024</p>
-                                            <a href="#" class="h4-title">Hamburguesa de pollo con doble nuggets</a>
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur ipsa
-                                                explicabo atque reprehenderit beatae! Accusantium soluta consequuntur
-                                                blanditiis amet ad.</p>
-                                            <a href="#" class="sec-btn">Leer mas</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>-->
-
-                
-                <!--Subscribe notifications-->
-                <section class="newsletter-sec section pt-0" style="background-image: url(assets/images/background/faq-bg.png);" >
-                    <div class="sec-wp">
-                        <div class="container">
-                            <div class="row" >
-                                <div class="col-lg-8 m-auto">
-                                    <div class="newsletter-box text-center back-img white-text"
-                                        style="background-image: url(assets/images/background/news.jpg);">
-                                        <div class="bg-overlay dark-overlay"></div>
-                                        <div class="sec-wp">
-                                            <div class="newsletter-box-text">
-                                                <h2 class="h2-title">Subscribase para recibir nuevas recetas</h2>
-                                                <p>Mensualmente recibirá nuevas novedades que tenemos preparadas para usted</p>
-                                            </div>
-                                            <form action="#" class="newsletter-form">
-                                                <input type="email" class="form-input"
-                                                    placeholder="Ingrese su mail aqui" required>
-                                                <button type="submit" class="sec-btn primary-btn">Enviar</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!--Contact-->
-            <section class="book-table section bg-light" style="background-image: url(assets/images/background/blog-pattern-bg.png);">
-                <div class="book-table-shape">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-
-                <div class="book-table-shape book-table-shape2">
-                    <img src="assets/images/background/table-leaves-shape.png" alt="">
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="sec-title text-center mb-5">
-                            <p class="sec-sub-title mb-3">Contacto</p>
-                            <h2 class="h2-title">Comunicate con nosotros</h2>
-                            <div class="sec-title-shape mb-4">
-                                <img src="assets/images/figure/title-shape.svg" alt="">
-                            </div>
-                            <div class="sec-title-shape mb-4">
-                                <img src="assets/images/title-shape.svg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sec-wp">
-                    <div class="container">
-                        <div class="book-table-info">
-                            <div class="row align-items-center">
-                                <div class="col-lg-4">
+                        <div class="row justify-content-center"> <!-- Alinear las columnas al centro -->
+                            <div class="col-md-5"> <!-- Primer bloque con imagen y botón -->
+                                <div class="">
                                     <div class="text-center">
-                                        <h3>Correo electronico</h3>
-                                        <p>saboresadaptados@gmail.com</p>
+                                        <img src="assets/images/testimonials/patient.jpg" alt="" class="img-small">
+                                        <a id="patient-button" class="btn btn-red mt-4 mb-5">
+                                            Paciente
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="call-now text-center">
-                                        <i class="uil uil-phone"></i>
-                                        <!--<a href="tel:+91-8866998866">+91 - 8866998866</a>-->
-                                        <a>+91 - 8866998866</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="table-title text-center">
-                                        <h3>Todos los dias</h3>
-                                        <p>Las 24 horas</p>
+                            </div>
+                            <div class="col-md-2"> <!-- Espacio entre las columnas -->
+                                <!-- Este espacio es intencional para separar las dos ventanas -->
+                            </div>
+                            <div class="col-md-5"> <!-- Segundo bloque con imagen y botón -->
+                                <div class="">
+                                    <div class="text-center">
+                                        <img src="assets/images/testimonials/doctor.jpg" alt="" class="img-small">
+                                        <a id="admin-button" class="btn btn-red mt-4 mb-5">
+                                            Fonoaudióloga
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -1853,78 +368,8 @@
             </section>
 
             <!-- Footer -->
-            <footer class="site-footer" id="contact" style="background-image: url(assets/images/background/blog-pattern-bg.png);">
-                <div class="top-footer section">
-                    <div class="sec-wp">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="footer-info">
-                                        <!--<div class="footer-logo">
-                                            <a href="index.html">
-                                                <img src="logo.png" alt="">
-                                            </a>
-                                        </div>
-                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, tenetur.
-                                        </p>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-facebook-f"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-youtube"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>-->
-                                    </div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="footer-flex-box">
-                                        <!--<div class="footer-table-info">
-                                            <h3 class="h3-title">Horarios</h3>
-                                            <ul>
-                                                <li><i class="uil uil-clock"></i> Lunes-Jueves : 9am - 22pm</li>
-                                                <li><i class="uil uil-clock"></i> Viernes-Domingos : 11am - 22pm</li>
-                                            </ul>
-                                        </div>-->
-                                        <!--<div class="footer-menu food-nav-menu">
-                                            <h3 class="h3-title">Links</h3>
-                                            <ul class="column-2">
-                                                <li>
-                                                    <a href="#home" class="footer-active-menu">Inicio</a>
-                                                </li>
-                                                <li><a href="#about">¿Que ofrecemos?</a></li>
-                                                <li><a href="#info">Sobre disfagia</a></li>
-                                                <li><a href="#menu">Menu y Recetas</a></li>
-                                                <li><a href="#gallery">Gallery</a></li>
-                                                <li><a href="#blog">Blog</a></li>
-                                                <li><a href="#contact">Contacto</a></li>
-                                            </ul>
-                                        </div>-->
-                                        <!--<div class="footer-menu">
-                                            <h3 class="h3-title">Compañia</h3>
-                                            <ul>
-                                                <li><a href="#">Terms & Conditions</a></li>
-                                                <li><a href="#">Privacy Policy</a></li>
-                                                <li><a href="#">Cookie Policy</a></li>
-                                            </ul>
-                                        </div>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <footer class="site-footer" id="contact"
+                style="background-image: url(assets/images/background/blog-pattern-bg.png);">
                 <div class="bottom-footer">
                     <div class="container">
                         <div class="row">
@@ -1941,57 +386,65 @@
                 </div>
             </footer>
 
-
-
         </div>
     </div>
 
-    <!---------------------------------------------ChatBot---------------------------------------------->
-    <!-- CHAT BAR BLOCK -->
-    <div class="chat-bar-collapsible">
-        <button id="chat-button" type="button" class="collapsible">Chatbot
-            <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
-        </button>
+    <!-- Librerías necesarias -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        window.addEventListener("scroll", function () {
+            const scrollTopButton = document.querySelector(".scrolltop");
+            if (window.scrollY > 100) { // Si se desplaza más de 100px, mostrar el botón
+                scrollTopButton.style.opacity = 1; // Hacer visible el botón
+            } else {
+                scrollTopButton.style.opacity = 0; // Ocultar el botón
+            }
+        });
 
-        <div class="content">
-            <div class="full-chat-block">
-                <!-- Message Container -->
-                <div class="outer-container">
-                    <div class="chat-container">
-                        <!-- Messages -->
-                        <div id="chatbox">
-                            <h5 id="chat-timestamp"></h5>
-                            <p id="botStarterMessage" class="botText"><span>Cargando...</span></p>
-                        </div>
+        // Evento para hacer scroll hacia arriba cuando se hace clic en el botón
+        document.querySelector(".scrolltop").addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll suave hacia arriba
+        });
 
-                        <!-- User input box -->
-                        <div class="chat-bar-input-block">
-                            <div id="userInput">
-                                <input id="textInput" class="input-box" type="text" name="msg"
-                                    placeholder="'Enter' para enviar">
-                                <p></p>
-                            </div>
+        // Controla el clic en el botón "Paciente"
+        $("#patient-button").on("click", function (e) {
+            e.preventDefault(); // Prevenir la redirección inmediata
 
-                            <div class="chat-bar-icons">
-                                <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart"
-                                    onclick="heartButton()"></i>
-                                <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send"
-                                    onclick="sendButton()"></i>
-                            </div>
-                        </div>
+            // Mostrar la barra de carga y el mensaje
+            $("#redirect-notification-container").slideDown(); // Mostrar el contenedor
+            $("#redirect-progress-bar .progress-bar")
+                .css("width", "0%")
+                .animate({ width: "100%" }, 2000); // Llenar la barra en 2 segundos
 
-                        <div id="chat-bar-bottom">
-                            <p></p>
-                        </div>
+            $("#redirect-message").slideDown(); // Mostrar el mensaje "Redirigiendo..."
 
-                    </div>
-                </div>
+            // Redirigir después de 2 segundos
+            setTimeout(() => {
+                window.location.href = "patient-login.html"; // Redirigir a la página de login del paciente
+            }, 2000);
+        });
 
-            </div>
-        </div>
+        // Controla el clic en el botón "Fonoaudióloga"
+        $("#admin-button").on("click", function (e) {
+            e.preventDefault(); // Prevenir la redirección inmediata
 
-    </div>
+            // Mostrar la barra de carga y el mensaje
+            $("#redirect-notification-container").slideDown(); // Mostrar el contenedor
+            $("#redirect-progress-bar .progress-bar")
+                .css("width", "0%")
+                .animate({ width: "100%" }, 2000); // Llenar la barra en 2 segundos
 
+            $("#redirect-message").slideDown(); // Mostrar el mensaje "Redirigiendo..."
+
+            // Redirigir después de 2 segundos
+            setTimeout(() => {
+                window.location.href = "login-admin.html"; // Redirigir a la página de login del administrador
+            }, 2000);
+        });
+
+    </script>
     <!--google librarie-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -2042,7 +495,6 @@
 
     <!-- custom js  -->
     <script src="assets/js/main.js"></script>
-
 </body>
 
 </html>

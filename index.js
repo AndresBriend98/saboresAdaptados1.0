@@ -180,9 +180,9 @@ app.get("/admin/patients", async (req, res) => {
     }
 });
 
-// Redirigir "/" a "home1.html"
+// Redirigir "/" a "index.html"
 app.get("/", (req, res) => {
-    res.redirect("/home1.html");
+    res.redirect("/index.html");
 });
 
 app.get("/recipes/level/:level", async (req, res) => {
@@ -291,6 +291,23 @@ app.put("/admin/recipe/:id", upload.single("image"), async (req, res) => {
     } catch (error) {
         console.error("Error al actualizar receta:", error);
         res.status(500).send("Error al actualizar receta.");
+    }
+});
+
+app.delete("/admin/patient/:dni", async (req, res) => {
+    const dni = req.params.dni; // Obtener el DNI del parámetro de la solicitud
+
+    try {
+        const result = await db.collection("patients").deleteOne({ dni }); // Eliminar el paciente por DNI
+
+        if (result.deletedCount === 0) { // Si no se eliminó nada
+            return res.status(404).send("Paciente no encontrado"); // Respuesta con 404
+        }
+
+        res.status(200).send("Paciente eliminado con éxito"); // Respuesta con éxito
+    } catch (error) {
+        console.error("Error al eliminar paciente:", error);
+        res.status(500).send("Error del servidor al eliminar paciente"); // Respuesta para errores del servidor
     }
 });
 

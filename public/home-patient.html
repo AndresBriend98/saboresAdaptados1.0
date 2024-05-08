@@ -141,7 +141,7 @@
                             <ul class="menu food-nav-menu">
                                 <li><a href="#" id="home-link">Inicio</a></li>
                                 <li><a href="#" id="recipes-link">Ver Recetas</a></li>
-                                <li><a href="home1.html">Cerrar Sesión</a></li>
+                                <li><a href="index.html">Cerrar Sesión</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -532,7 +532,7 @@
                     }
                 });
                 $(document).ready(function () {
-                    $("a[href='home1.html']").on("click", function (e) {
+                    $("a[href='index.html']").on("click", function (e) {
                         e.preventDefault(); // Evitar la redirección automática
 
                         // Mostrar el contenedor con el mensaje y la barra de progreso
@@ -546,7 +546,7 @@
 
                         // Redirigir después de 2 segundos
                         setTimeout(function () {
-                            window.location.href = "home1.html"; // Redirigir a la página de inicio o login
+                            window.location.href = "index.html"; // Redirigir a la página de inicio o login
                         }, 2000);
                     });
                 });
