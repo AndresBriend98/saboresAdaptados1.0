@@ -863,6 +863,13 @@ p {
     display: inline-block !important;
 }
 
+.menu-list-row {
+    height: 100vh;
+}
+
+
+
+
 .dish-box-wp {
     display: none;
 }
@@ -2296,6 +2303,48 @@ p {
         /* Asegurar que el texto esté centrado */
     }
 }
+
+.social-icon ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-icon ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-icon a {
+    text-decoration: none;
+    color: #333;
+    /* Color del ícono */
+}
+
+.email-icon {
+    font-size: 24px;
+    /* Tamaño del ícono */
+    padding: 10px;
+    /* Espaciado alrededor del ícono */
+    border-radius: 50%;
+    /* Forma redondeada */
+    background-color: #980303;
+    /* Color de fondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra */
+    transition: all 0.3s;
+    /* Transición para suavizar cambios */
+}
+
+.email-icon:hover {
+    background-color: #ff9252;
+    /* Cambiar color en hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    /* Mayor sombra en hover */
+    color: white;
+    /* Cambiar el color del ícono al pasar el mouse */
+}
+
 
 @media (max-width: 480px) {
     .team-img {

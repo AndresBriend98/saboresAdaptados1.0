@@ -47,7 +47,7 @@ function getBotResponse(input) {
 
 
         // Consultas sobre qué ofrece la empresa
-    } else if (["que ofrecen", "que ofrecen ustedes", "en que se especializan", "cuales son sus servicios"].includes(input)) {
+    } else if (["que ofrecen", "que ofrecen ustedes", "en que se especializan", "cuales son sus servicios", "servicios", "que hacen", "que brindan","beneficios"].includes(input)) {
         return (
             "Aquí obténdras productos alimenticios con texturas modificadas o adaptadas para facilitar una adecuada nutrición " +
             "para personas con disfagia. Esto es importante para una deglución segura y eficaz, minimizando el riesgo de " +
@@ -55,7 +55,7 @@ function getBotResponse(input) {
             "deshidratación o desnutrición."
         );
 
-    } else if (["testimonios", "opiniones", "comentarios"].includes(input)) {
+    } else if (["testimonios", "opiniones", "comentarios","opiniones de pacientes","comentarios de pacientes","testimonios de pacientes" ].includes(input)) {
         return (
             "Aquí tienes algunos comentarios de nuestros clientes:<br>" +
             "<br>• Lucia Campayo: <br>'Excelentes recetas.'<br>" +
@@ -65,7 +65,7 @@ function getBotResponse(input) {
         );
 
         // Descargar una receta
-    } else if (["como descargar una receta", "descargar receta", "guardar receta", "descargar"].includes(input)) {
+    } else if (["como descargar una receta", "descargar receta", "guardar receta", "descargar","descargar recetas", "guardar recetas"].includes(input)) {
         return (
             "Pasos para descargar una receta:<br>" +
             "1- Acceder a “Ver recetas”.<br>" +
@@ -75,7 +75,7 @@ function getBotResponse(input) {
         );
 
         // Ver una receta
-    } else if (["como ver una receta", "receta", "ver una receta", "informacion de la receta", "visualizar una receta", "visualizar receta"].includes(input)) {
+    } else if (["como ver una receta", "recetas", "ver una receta", "informacion de la receta", "visualizar una receta", "visualizar recetas","ver recetas","receta"].includes(input)) {
         return (
             "Pasos para visualizar una receta:<br>" +
             "1- Acceder a “Ver recetas”.<br>" +
@@ -84,15 +84,9 @@ function getBotResponse(input) {
             "4- ¡A disfrutar!"
         );
 
-        // Ver una receta
-    } else if (["como ver una receta", "receta", "ver una receta", "informacion de la receta", "visualizar una receta", "visualizar receta"].includes(input)) {
-        return (
-            "Pasos para visualizar una receta:<br>" +
-            "1- Acceder a “Ver recetas”.<br>" +
-            "2- Presionar en el botón de “Ver receta” de la receta que quieras visualizar, de esta forma se te desplegara una ventana.<br>" +
-            "3- Dicha ventana, te mostrará los ingredientes y cómo prepararla.<br>" +
-            "4- ¡A disfrutar!"
-        );
+    } else if (["❤️"]) {
+        return ("❤️");
+
 
     } else {
         return "No entiendo esa pregunta. ¿Podrías reformularla o preguntar algo diferente?";

@@ -23,6 +23,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
+        .container1 {
+            padding-bottom: 150px;
+            /* Ajusta el valor según la cantidad de espacio que quieras */
+        }
+
+        .menu-list-row {
+            padding-bottom: 50px;
+            /* Espacio adicional al final de la lista de recetas */
+        }
+
         #logoutNotificationContainer {
             position: fixed;
             bottom: 0;
@@ -226,7 +236,7 @@
 
 
     <!-- Home  -->
-    <div id="viewport" style="overflow: auto;">
+    <div id="viewport">
         <div id="js-scroll-content">
             <section class="main-banner" id="home"
                 style="background-image: url(assets/images/background/blog-pattern-bg.png);">
@@ -246,7 +256,7 @@
                     </div>
                 </div>
                 <div class="sec-wp">
-                    <div class="container">
+                    <div class="container1">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="sec-title text-center mb-5">
@@ -258,7 +268,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="menu-list-row">
+                        <div class="menu-list-row margin-bottom:">
                             <div class="row g-xxl-5 bydefault_show" id="menu-dish"></div>
                         </div>
                     </div>

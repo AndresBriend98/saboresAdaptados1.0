@@ -97,6 +97,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         modal.style.display = "none"; // Cerrar el modal cuando el mouse sale del área del modal
                     });
                 });
+                // Cerrar el modal al hacer clic fuera de la parte interna
+                modals.forEach((modal, index) => {
+                    modal.addEventListener("click", function (event) {
+                        const modalContent = modal.querySelector(".modal-content");
+                        if (!modalContent.contains(event.target)) {
+                            modal.style.display = "none"; // Cerrar si el clic está fuera del contenido del modal
+                        }
+                    });
+                });
 
             }).fail(function (xhr) {
                 $("#menu-dish").html(`<p>Error al obtener recetas para el nivel ${level}: ${xhr.responseText}</p>`);
