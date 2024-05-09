@@ -90,7 +90,7 @@ $(document).ready(function () {
                     e.preventDefault(); // Prevenir comportamiento por defecto
                     modals[index].style.display = "none"; // Cerrar el modal
                 });
-            }); 
+            });
 
             // Evento para abrir el modal de edición
             $(".dish-edit-btn").on("click", function (e) {
@@ -113,13 +113,13 @@ $(document).ready(function () {
             });
             $(document).ready(function () {
                 const modal = $("#edit-recipe-modal");
-            
+
                 // Evento para abrir el modal
                 $(".dish-edit-btn").on("click", function (e) {
                     e.preventDefault(); // Prevenir comportamiento por defecto
                     modal.show(); // Abrir el modal
                 });
-            
+
                 // Evento para cerrar el modal al hacer clic fuera de él
                 $(document).on("click", function (e) {
                     // Si el clic no es dentro del modal, cerrarlo
@@ -127,14 +127,14 @@ $(document).ready(function () {
                         modal.hide(); // Cerrar el modal
                     }
                 });
-            
+
                 // Evento para cerrar el modal con el botón de cierre
                 $(".close").on("click", function (e) {
                     e.preventDefault(); // Prevenir comportamiento por defecto
                     modal.hide(); // Cerrar el modal
                 });
             });
-            
+
 
             $(".close").on("click", function (e) {
                 e.preventDefault(); // Prevenir el comportamiento por defecto
@@ -181,13 +181,46 @@ $(document).ready(function () {
             // Activar el filtro "Todos" por defecto para mostrar todas las recetas
             $(".filter[data-filter='.all']").trigger("click");
 
-            // Configurar evento para eliminar recetas con un modal de confirmación
+            // Evento para eliminar recetas con SweetAlert2 y cierre automático tras confirmación
             $(".dish-delete-btn").on("click", function (e) {
-                e.preventDefault(); // Prevenir el comportamiento predeterminado
-                const recipeId = $(this).data("id"); // Obtener el ID de la receta
-                $("#delete-recipe-modal").data("recipe-id", recipeId).show(); // Mostrar el modal de confirmación
-            });
+                e.preventDefault();
+                const recipeId = $(this).data("id");
 
+                Swal.fire({
+                    title: "¿Estás seguro/a?",
+                    text: "¡Esta acción eliminará la receta!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#28a745", // Verde para el botón "Sí"
+                    cancelButtonColor: "#d33", // Rojo para el botón "No"
+                    confirmButtonText: "Sí, eliminarla",
+                    cancelButtonText: "No, cancelar",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/admin/recipe/${recipeId}`, // Ruta para eliminar receta
+                            type: "DELETE",
+                            success: function () {
+                                Swal.fire({
+                                    title: "Eliminada!",
+                                    text: "La receta ha sido eliminada.",
+                                    icon: "success",
+                                    timer: 1500, // El mensaje se cierra automáticamente después de 1.5 segundos
+                                    showConfirmButton: false, // No mostrar el botón "Ok"
+                                });
+                                fetchAllRecipes(); // Recargar la lista de recetas
+                            },
+                            error: function (xhr) {
+                                Swal.fire(
+                                    "Error!",
+                                    `Hubo un problema al eliminar la receta: ${xhr.responseText}`,
+                                    "error"
+                                );
+                            },
+                        });
+                    }
+                });
+            });
             // Evento para cerrar el modal
             $(".close").on("click", function (e) {
                 e.preventDefault(); // Prevenir el comportamiento predeterminado
@@ -207,7 +240,7 @@ $(document).ready(function () {
                     },
                 });
             });
-            
+
         });
     }
 
