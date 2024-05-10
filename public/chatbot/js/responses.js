@@ -1,11 +1,15 @@
 function cleanInput(input) {
     // Elimina signos de puntuación y caracteres no alfanuméricos
-    return input.replace(/[^a-záéíóúñü ]/gi, '').toLowerCase().trim();
+    return input.replace(/[^a-záéíóúñü❤️ ]/gi, '').toLowerCase().trim();
 }
 
 function getBotResponse(input) {
     // Limpia el input de signos de puntuación y lo convierte a minúsculas
     input = cleanInput(input);
+
+    if (input.includes("❤️")) {
+        return "❤️";
+    }
 
     // Saludos
     if (["hola", "buenas", "hello", "hi"].includes(input)) {
@@ -36,7 +40,7 @@ function getBotResponse(input) {
         return "Puedo ayudarte con información sobre menús, horarios, ubicaciones, contacto, y otras preguntas relacionadas con nuestro servicio.";
 
         // Consultas sobre horarios
-    } else if (["horarios", "cuales son sus horarios"].includes(input)) {
+    } else if (["horarios", "cuales son sus horarios", "horarios de atencion", "que dias trabajan"].includes(input)) {
         return "Estamos disponibles las 24 horas, todos los días de la semana.";
 
         // Respuestas genéricas
@@ -49,7 +53,7 @@ function getBotResponse(input) {
         // Consultas sobre qué ofrece la empresa
     } else if (["que ofrecen", "que ofrecen ustedes", "en que se especializan", "cuales son sus servicios", "servicios", "que hacen", "que brindan","beneficios"].includes(input)) {
         return (
-            "Aquí obténdras productos alimenticios con texturas modificadas o adaptadas para facilitar una adecuada nutrición " +
+            "Aquí obtendrás productos alimenticios con texturas modificadas o adaptadas para facilitar una adecuada nutrición " +
             "para personas con disfagia. Esto es importante para una deglución segura y eficaz, minimizando el riesgo de " +
             "atragantamiento y ayudando a reducir el miedo a atragantarse, lo que puede llevar a problemas de salud como " +
             "deshidratación o desnutrición."
@@ -84,13 +88,9 @@ function getBotResponse(input) {
             "4- ¡A disfrutar!"
         );
 
-    } else if (["❤️"]) {
-        return ("❤️");
-
 
     } else {
         return "No entiendo esa pregunta. ¿Podrías reformularla o preguntar algo diferente?";
     }
 
 }
-
