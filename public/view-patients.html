@@ -15,8 +15,21 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="chatbot/css/chat.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Estilos personalizados -->
     <style>
+        .header-menu {
+            /* Comprueba si hay otras reglas que puedan ocultar el menú */
+            transform: translateY(-100%);
+            /* El menú está fuera de la pantalla por defecto */
+        }
+
+        .toggled .header-menu {
+            transform: translateY(0);
+            /* El menú se muestra cuando la clase 'toggled' está presente */
+        }
+
+
         /* Color verde para el botón de confirmación */
         .btn-confirm {
             background-color: #13c93d !important;
@@ -592,6 +605,13 @@
 
 
         <script>
+            $(document).ready(function () {
+                $(".menu-toggle").on("click", function () {
+                    $("body").toggleClass("toggled"); // Aplica la clase para mostrar/ocultar el menú
+                });
+            });
+
+
             $(document).ready(function () {
                 // Cargar todos los pacientes y mostrarlos
                 function loadAllPatients() {
