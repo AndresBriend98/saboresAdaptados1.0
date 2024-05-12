@@ -326,7 +326,7 @@
                                 <li><a href="form.html">Agregar Pacientes</a></li>
                                 <li><a href="view-patients.html">Ver Pacientes</a></li>
                                 <li><a href="allRecipes.html">Ver Recetas</a></li>
-                                <li><a href="home1.html">Cerrar Sesión</a></li>
+                                <li><a href="index.html">Cerrar Sesión</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -612,7 +612,7 @@
 
     <script>
         $(document).ready(function () {
-            $("a[href='home1.html']").on("click", function (e) {
+            $("a[href='index.html']").on("click", function (e) {
                 e.preventDefault(); // Prevenir la redirección automática
 
                 // Mostrar el contenedor con el mensaje y la barra de progreso
@@ -626,7 +626,7 @@
 
                 // Redirigir después de 2 segundos
                 setTimeout(function () {
-                    window.location.href = "home1.html"; // Redirigir a la página de inicio o login
+                    window.location.href = "index.html"; // Redirigir a la página de inicio o login
                 }, 2000);
             });
         });
