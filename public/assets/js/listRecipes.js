@@ -1,4 +1,3 @@
-// Un único archivo JS para manejar recetas y modales
 document.addEventListener("DOMContentLoaded", function () {
     // Función para obtener el DNI de la URL
     function getDniFromUrl() {
@@ -50,6 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                         <a href="${downloadUrl}" download class="dish-add-btn-download">
                                             <i class="uil uil-download-alt"></i>
                                         </a>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-primary btn-cuestionario" data-nombre-receta="${recipe.name}">Realizar Encuesta</button>
                                     </li>
                                 </ul>
                             </div>
@@ -104,6 +106,16 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (!modalContent.contains(event.target)) {
                             modal.style.display = "none"; // Cerrar si el clic está fuera del contenido del modal
                         }
+                    });
+                });
+
+                // Agregar evento para guardar el nombre de la receta en sessionStorage
+                var btnCuestionario = document.querySelectorAll(".btn-cuestionario");
+                btnCuestionario.forEach(btn => {
+                    btn.addEventListener("click", function() {
+                        var nombreReceta = this.getAttribute("data-nombre-receta");
+                        sessionStorage.setItem("nombreReceta", nombreReceta);
+                        window.location.href = "../cuestionario.html"; // Redireccionar a la página de cuestionario
                     });
                 });
 

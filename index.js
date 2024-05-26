@@ -188,7 +188,7 @@ app.post("/patient/login", async (req, res) => {
             return res.status(404).send("Paciente no registrado"); // Devuelve 404 si el paciente no se encuentra
         }
 
-        res.status(200).send("Login exitoso!"); // Devuelve 200 si el paciente se encuentra
+        res.status(200).send({ id: patient._id }); // Devuelve 200 si el paciente se encuentra
     } catch (error) {
         console.error("Error durante el login:", error);
         res.status(500).send("Error durante el login."); // Manejo de errores del servidor
