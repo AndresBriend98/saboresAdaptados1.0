@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         modals[index].style.display = "none"; // Cerrar el modal correspondiente
                     });
                 });
-                
+
                 modals.forEach((modal, index) => {
                     modal.addEventListener("mouseleave", function () {
                         modal.style.display = "none"; // Cerrar el modal cuando el mouse sale del área del modal
@@ -134,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const encuestaModal = document.getElementById("encuesta-modal");
         encuestaModal.style.display = "none";
     }
-    
 
     // Función para guardar la encuesta en la base de datos
     function saveEncuesta() {
@@ -174,15 +173,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Generar recetas cuando el documento está listo
     generateRecipes();
 
-    $(document).ready(function() {
-        // Agrega un evento de clic utilizando delegación de eventos
-        $(document).on("click", ".close-encuesta-modal", function() {
-            // Oculta la modal de la encuesta
-            console.log("Clic en el botón de cerrar");
-            $("#encuesta-modal").hide();
-        });
+    // Evento para cerrar el modal de la encuesta cuando se hace clic en la "X"
+    $(".close-encuesta-modal").click(function () {
+        closeEncuestaModal();
     });
-    
+
     // Escuchar el envío del formulario de encuesta
     $("#encuesta-form").on("submit", function (e) {
         e.preventDefault(); // Prevenir el envío por defecto

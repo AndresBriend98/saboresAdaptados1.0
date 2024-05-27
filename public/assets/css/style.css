@@ -1035,6 +1035,21 @@ p {
     margin-right: 10px;
 }
 
+.btn-blue {
+    padding: 11px px;
+    font-size: 16px;
+    background: linear-gradient(145deg, #4d6eff, #001aff);
+    box-shadow: inset 4px 4px 8px #234dd6, inset -4px -4px 8px #3374ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 18px;
+    margin-bottom: 27px;
+
+}
+
 .dish-delete-btn {
     padding: 10px 30px;
     font-size: 16px;

@@ -21,8 +21,94 @@
     <link rel="stylesheet" href="chatbot/css/chat.css">
     <!-- font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
+        /* Estilo para el botón de enviar */
+        .modal-content button[type="submit"] {
+            display: block;
+            /* Convertir el botón en un elemento de bloque */
+            margin: 0 auto;
+            /* Establecer margen automático en los lados izquierdo y derecho para centrarlo horizontalmente */
+            padding: 10px 20px;
+            /* Ajustar el relleno según sea necesario */
+            font-size: 16px;
+            background-color: #4d6eff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        /* Estilo para la modal de la encuesta */
+        #encuesta-modal {
+            display: none;
+            /* Por defecto, la modal de la encuesta está oculta */
+            position: fixed;
+            z-index: 1000;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0);
+            /* Fondo semitransparente */
+            border-color: #001aff00;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+        }
+
+        /* Estilo para el contenido de la modal */
+        .modal-content {
+            background-color: rgba(255, 255, 255, 0);
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilo para el botón de cerrar */
+        .close-button {
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Estilo para el título de la encuesta */
+        .modal-content h4 {
+            margin-top: 0;
+        }
+
+        /* Estilo para los campos de la encuesta */
+        .modal-content label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo para los botones de radio */
+        .modal-content input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        /* Estilo para el botón de enviar */
+        .modal-content button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4d6eff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        /* Cambiar el color de fondo del botón cuando se pasa el mouse sobre él */
+        .modal-content button[type="submit"]:hover {
+            background-color: #001aff;
+        }
+
+
         .container1 {
             padding-bottom: 150px;
             /* Ajusta el valor según la cantidad de espacio que quieras */
@@ -115,7 +201,7 @@
             /* Aumenta la altura de línea para más espacio vertical */
         }
 
-        @media (max-width: 1025px) {
+        @media (max-width: 2000px) {
             .site-footer {
                 margin-top: 40px;
                 /* Aumentar el margen superior del footer para crear más espacio */
@@ -129,11 +215,19 @@
                 /* Asegurarse de que esté por encima de otros elementos */
             }
 
+            .btn-blue {
+                padding: 11px 15px;
+            }
+
+
         }
 
         @media (max-width: 1023px) {
             .chat-bar-collapsible {
                 z-index: 1000 !important;
+            }
+            btn-blue {
+                padding: 11px 15px;
             }
         }
 
@@ -274,9 +368,75 @@
                     </div>
                 </div>
             </section>
+            <div id="encuesta-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button close-encuesta-modal">&times;</span>
+                    <h4 class="mt-3 text-center ">¡ATENCIÓN!</h4>
+                    <h4 class="mt-1 text-center mb-5">¡Responder ÚNICAMENTE si ha probado la receta!</h4>
+                    <form id="encuesta-form">
+                        <div>
+                            <label><strong>1. ¿Tuvo alguna dificultad para tragar durante su última
+                                    comida?</strong></label>
+                            <div class="text-center ">
+                                <input type="radio" name="tragar" value="Sí" required> Sí
+                                <input type="radio" name="tragar" value="No" class="mb-4" style="margin-left: 60px"> No
+                            </div>
+                        </div>
+                        <div>
+                            <label><strong>2. ¿Tosió o sintió que se ahogaba al tragar?</strong></label>
+                            <div class="text-center">
+                                <input type="radio" name="tosio" value="Sí" required> Sí
+                                <input type="radio" name="tosio" value="No" class="mb-4" style="margin-left: 60px"> No
+                            </div>
+                        </div>
+                        <div>
+                            <label><strong>3. ¿Su voz cambió después de comer o beber, como si estuviera más
+                                    ronca?</strong></label>
+                            <div class="text-center">
+                                <input type="radio" name="voz" value="Sí" required> Sí
+                                <input type="radio" name="voz" value="No" class="mb-4" style="margin-left: 60px"> No
+                            </div>
+                        </div>
+                        <div>
+                            <label><strong>4. ¿Tuvo que tragar varias veces para que la comida bajara?</strong></label>
+                            <div class="text-center">
+                                <input type="radio" name="variasveces" value="Sí" required> Sí
+                                <input type="radio" name="variasveces" value="No" class="mb-4" style="margin-left: 60px"> No
+                            </div>
+                        </div>
+                        <div>
+                            <label><strong>5. ¿Usó alguna técnica especial para ayudar a tragar, como cambiar la postura
+                                    de la
+                                    cabeza o tomar sorbos pequeños?</strong></label>
+                            <div class="text-center">
+                                <input type="radio" name="tecnicaespecial" value="Sí" required> Sí
+                                <input type="radio" name="tecnicaespecial" value="No" class="mb-4" style="margin-left: 60px"> No
+                            </div>
+                        </div>
+                        <div>
+                            <label><strong>6. ¿Le ayudaron estas técnicas a tragar mejor?</strong></label>
+                            <div class="text-center">
+                                <input type="radio" name="ayudo" value="Sí" required> Sí
+                                <input type="radio" name="ayudo" value="No" class="mb-4" style="margin-left: 60px"> No
+                            </div>
+                        </div>
+                        <div>
+                            <label><strong>7. ¿Sintió dolor o malestar al tragar?</strong></label>
+                            <div class="text-center">
+                                <input type="radio" name="malestar" value="Sí" required> Sí
+                                <input type="radio" name="malestar" value="No" style="margin-left: 60px"> No
+                            </div>
 
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="dish-add-btn text-center">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+
     <!---------------------------------------------ChatBot---------------------------------------------->
     <!-- CHAT BAR BLOCK -->
     <div class="chat-bar-collapsible">
@@ -321,6 +481,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="assets/js/listRecipes.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -388,6 +549,7 @@
     </script>
 
     <script>
+
         $(document).ready(function () {
             // Obtener el `dni` de la URL
             const params = new URLSearchParams(window.location.search);

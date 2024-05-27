@@ -5,6 +5,8 @@ var bcrypt = require("bcryptjs");
 var cors = require("cors");
 const multer = require("multer");
 const path = require("path");
+const Patients = require("./patientmodel")
+const Encuesta = require("./encuestamodel")
 
 const app = express();
 
@@ -50,6 +52,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+
 app.post("/admin/login", async (req, res) => {
     var email = req.body.email;
     var password = req.body.password;
@@ -88,17 +91,15 @@ app.post("/admin/add-patient", async (req, res) => {
         }
 
         // Si no hay duplicados, agregar el nuevo paciente
-        const newPatient = {
+        const patients = new Patients({
             name,
             surname,
             dni,
             birthDate,
             healthReport,
-            level,
-            image,
-        };
-
-        await db.collection("patients").insertOne(newPatient); // Insertar el nuevo paciente
+            level
+        });
+        await db.collection("patients").insertOne(patients); // Insertar el nuevo paciente
 
         // Devolver un mensaje de éxito si se insertó correctamente
         res.status(200).send("Paciente agregado con éxito");
@@ -106,6 +107,71 @@ app.post("/admin/add-patient", async (req, res) => {
         // Si hay un error inesperado, devolver un código 500
         console.error("Error al agregar paciente:", error);
         res.status(500).send("Error al agregar paciente.");
+    }
+});
+app.post("/encuestas/:pacienteID", async (req, res) => {
+    const { pacienteID } = req.params; //buscar paciente que creo el cuestionario
+    var patient = await Patients.findById(pacienteID)
+    const { comida, tragar, tosio, voz, variasveces, tecnicaespecial, ayudo, malestar, recipeId } = req.body; // Agrega recipeId aquí
+
+    try {
+        const admin = await db.collection("admin").findOne({ email: "saboresadaptados@gmail.com" });
+
+        if (!admin) {
+            return res.status(403).send("Acceso denegado");
+        }
+
+        // Si no hay duplicados, agregar el nuevo paciente
+        const encuestas = new Encuesta({
+            comida,
+            tragar,
+            tosio,
+            voz,
+            variasveces,
+            tecnicaespecial,
+            ayudo,
+            malestar,
+            paciente: pacienteID,
+            recipe: recipeId, // Agrega el recipeId aquí
+        });
+        patient.encuestas.push(encuestas._id);
+        await patient.save(); // guardar cuestionario en el paciente
+        await db.collection("encuestas").insertOne(encuestas); // Insertar el nuevo cuestionario
+    } catch (error) {
+        // Si hay un error inesperado, devolver un código 500
+        console.error("Error al agregar paciente:", error);
+        res.status(500).send("Error al agregar paciente.");
+    }
+});
+
+//Obtener informacion de respuestas
+app.get("/encuestas/:encuestaID", async (req, res) => {
+    const { encuestaID } = req.params;//buscar la encuesta por encuesta
+    try {
+        const encuesta = await Encuesta.findById(encuestaID)
+        if (!encuesta) {
+            return res.status(404).json({ mensaje: 'Encuesta no encontrada' });
+        }
+        res.status(200).json(encuesta);// devulve la informacion de la encuesta
+    } catch (error) {
+        console.error('Error al obtener la encuesta:', error);
+        res.status(500).json({ mensaje: 'Error del servidor al obtener la encuesta' });
+    }
+})
+app.get("/patient/byDni/:dni", async (req, res) => {
+    const { dni } = req.params;
+
+    try {
+        const patient = await Patients.findOne({ dni: dni });
+
+        if (!patient) {
+            return res.status(404).json({ mensaje: 'Paciente no encontrado' });
+        }
+
+        res.status(200).json(patient);
+    } catch (error) {
+        console.error('Error al obtener información del paciente:', error);
+        res.status(500).json({ mensaje: 'Error del servidor al obtener información del paciente' });
     }
 });
 
@@ -313,4 +379,3 @@ app.delete("/admin/patient/:dni", async (req, res) => {
         res.status(500).send("Error del servidor al eliminar paciente"); // Respuesta para errores del servidor
     }
 });
-

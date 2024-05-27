@@ -18,6 +18,103 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Estilos personalizados -->
     <style>
+        #view-encuesta-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            width: 50%;
+            /* Toma el 100% del ancho de la ventana */
+            height: 50%;
+            /* Toma el 100% de la altura de la ventana */
+            overflow: auto;
+            /* Agrega desplazamiento si el contenido es demasiado grande */
+            background-color: rgb(255, 255, 255);
+            justify-content: center;
+            /* Centra horizontalmente */
+            align-items: center;
+            /* Centra verticalmente */
+        }
+
+        #encuesta-modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            /* Centra el modal en la ventana */
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 80%;
+            /* Ajusta el ancho del modal */
+        }
+
+        #encuesta-modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            /* Centra el modal en la ventana */
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            width: 80%;
+            /* Ajusta el ancho del modal */
+        }
+
+        /* Estilos para el botón de cerrar */
+        #encuesta-modal-close {
+            color: #ff0000;
+            /* Color del texto gris */
+            float: right;
+            /* Flotar a la derecha */
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        #encuesta-modal-close:hover,
+        #encuesta-modal-close:focus {
+            color: black;
+            /* Cambiar el color del texto al pasar el mouse o enfocar */
+            text-decoration: none;
+            /* Quitar subrayado */
+            cursor: pointer;
+            /* Cambiar el cursor al estilo de mano */
+        }
+
+        /* Close modal*/
+        .close-button {
+            position: absolute;
+            top: 10px;
+            margin-right: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 40px;
+            color: #ff4800;
+        }
+
+        .close-button:hover {
+            color: #ff7300;
+        }
+
+        /* Estilos para el encabezado del modal */
+        #encuesta-modal-header {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            /* Color de fondo verde */
+            color: white;
+            /* Texto blanco */
+        }
+
+        /* Estilos para el cuerpo del modal */
+        #encuesta-modal-body {
+            padding: 20px;
+        }
+
+        /* Estilos para el pie del modal */
+        #encuesta-modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            /* Color de fondo verde */
+            color: white;
+            /* Texto blanco */
+        }
+
         .header-menu {
             /* Comprueba si hay otras reglas que puedan ocultar el menú */
             transform: translateY(-100%);
@@ -98,6 +195,19 @@
 
         }
 
+        .btn-blue1 {
+            background-color: #001aff;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+
+        .btn-blue1:hover {
+            background-color: rgb(33, 59, 209) !important;
+
+        }
+
 
         /* Estilo para el botón de cierre */
         #edit-level-modal .close {
@@ -120,15 +230,43 @@
 
             .btn-red1 {
                 width: 200px;
-                height: autopx;
+                height: auto px;
                 margin-top: 10px;
             }
+
+            .btn-blue1 {
+                width: 200px;
+                height: auto px;
+                margin-top: 10px;
+            }
+            #view-encuesta-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            width: 80%;
+            /* Toma el 100% del ancho de la ventana */
+            height: 80%;
+            /* Toma el 100% de la altura de la ventana */
+            overflow: auto;
+            /* Agrega desplazamiento si el contenido es demasiado grande */
+            background-color: rgb(255, 255, 255);
+            justify-content: center;
+            /* Centra horizontalmente */
+            align-items: center;
+            /* Centra verticalmente */
+        }
         }
 
         @media (max-width: 1024px) {
             .btn-red1 {
                 width: 200px;
-                height: autopx;
+                height: auto px;
+                margin-top: 10px;
+            }
+
+            .btn-blue1 {
+                width: 200px;
+                height: auto px;
                 margin-top: 10px;
             }
         }
@@ -553,6 +691,17 @@
                     </div>
                 </div>
             </section>
+            <!-- Modal para mostrar la encuesta -->
+            <div id="view-encuesta-modal" class="modal">
+                <div class="modal-header">
+                    <span class="close close-button" onclick="closeEncuestaModal()">&times;</span>
+                    <h2 class="text-center">Encuesta del Paciente</h2>
+                </div>
+                <div class="modal-body" id="encuesta-modal-body">
+                    <!-- Aquí se mostrará la encuesta -->
+                </div>
+            </div>
+
 
             <!-- Modal para modificar el nivel de adaptación -->
             <div id="edit-level-modal" class="modal">
@@ -627,6 +776,8 @@
                                     <div class="action-buttons">
                                         <button class="btn-red" onclick="openEditLevelModal('${patient.dni}')">Modificar nivel de adaptación</button>
                                         <button class="btn-red1" onclick="deletePatient('${patient.dni}')">Eliminar paciente</button>
+                                        <button class="btn-blue1" onclick="loadEncuestas('${patient.dni}')">Ver encuestas</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -653,6 +804,7 @@
                                 <div class="action-buttons">
                                     <button class="btn-red" onclick="openEditLevelModal('${patient.dni}')">Modificar nivel de adaptación</button>
                                     <button class="btn-red1" onclick="deletePatient('${patient.dni}')">Eliminar paciente</button> <!-- Agregar botón de eliminación -->
+                                    <button class="btn-blue1" onclick="loadEncuestas('${patient.dni}')">Visualizar encuestas</button>
                                 </div>
                             </div>
                         </div>
@@ -728,6 +880,82 @@
                     }
                 });
             }
+
+            function loadEncuestas(dni) {
+                $.get(`/patient/byDni/${dni}`, function (patient) {
+                    if (patient.encuestas.length > 0) {
+                        const encuestas = patient.encuestas;
+                        const selectOptions = encuestas.map((encuestaId, index) => `
+                            <option value="${encuestaId}">Encuesta ${index + 1}</option>
+                        `).join("");
+
+                        // Mostrar el menú desplegable con las opciones de encuestas
+                        Swal.fire({
+                            title: 'Selecciona una encuesta',
+                            html: `
+                                <select id="encuesta-selector" class="swal2-select">
+                                    ${selectOptions}
+                                </select>
+                            `,
+                            showCancelButton: true,
+                            cancelButtonText: 'Cancelar',
+                            confirmButtonText: 'Ver encuesta',
+                            preConfirm: () => {
+                                const selectedEncuestaId = $("#encuesta-selector").val();
+                                if (!selectedEncuestaId) {
+                                    Swal.showValidationMessage('Debes seleccionar una encuesta');
+                                }
+                                return selectedEncuestaId;
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                const selectedEncuestaId = result.value;
+                                // Llamar a una función para cargar y mostrar la encuesta seleccionada
+                                viewSelectedEncuesta(selectedEncuestaId);
+                            }
+                        });
+                    } else {
+                        // Mostrar un mensaje si el paciente no tiene encuestas
+                        Swal.fire({
+                            title: 'No hay encuestas',
+                            text: 'El paciente aún no ha completado ninguna encuesta.',
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            }
+
+            function viewSelectedEncuesta(encuestaId) {
+                $.get(`/encuestas/${encuestaId}`, function (encuesta) {
+                    const encuestaContent = `
+                        <p><strong>1. Comida: </strong> ${encuesta.comida}</p>
+                        <p><strong>2. ¿Tuvo alguna dificultad para tragar durante su última comida?</strong></p>
+                        <p>Respuesta: ${encuesta.tragar}</p>
+                        <p><strong>3. ¿Tosió o sintió que se ahogaba al tragar?</strong></p>
+                        <p>Respuesta: ${encuesta.tosio}</p>
+                        <p><strong>4. ¿Su voz cambió después de comer o beber, como si estuviera más ronca?</strong></p>
+                        <p>Respuesta: ${encuesta.voz}</p>
+                        <p><strong>5. ¿Tuvo que tragar varias veces para que la comida bajara?</strong></p>
+                        <p>Respuesta: ${encuesta.variasveces}</p>
+                        <p><strong>6. ¿Usó alguna técnica especial para ayudar a tragar, como cambiar la postura de la
+                            cabeza o tomar sorbos pequeños?</strong></p>
+                        <p>Respuesta: ${encuesta.tecnicaespecial}</p>
+                        <p><strong>7. ¿Le ayudaron estas técnicas a tragar mejor?</strong></p>
+                        <p>Respuesta: ${encuesta.ayudo}</p>
+                        <p><strong>8. ¿Sintió dolor o malestar al tragar?</strong></p>
+                        <p>Respuesta: ${encuesta.malestar}</p>
+                    `;
+                    $("#encuesta-modal-body").html(encuestaContent);
+                    $("#view-encuesta-modal").show();
+                });
+            }
+
+            function closeEncuestaModal() {
+                $("#view-encuesta-modal").hide();
+            }
+
+
 
             function confirmDeletePatient(dni) {
                 $.ajax({
