@@ -208,7 +208,6 @@
 
             $.post("/patient/login", { dni }, function (data) {
                 // Redirigir después de 2 segundos si el login es exitoso
-                sessionStorage.setItem('patientId', data.id);
                 setTimeout(function () {
                     window.location.href = `/home-patient.html?dni=${dni}`;
                 }, 2000);

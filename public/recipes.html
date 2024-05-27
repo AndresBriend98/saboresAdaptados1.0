@@ -44,6 +44,7 @@
 
         /* Estilo para la modal de la encuesta */
         #encuesta-modal {
+            padding-top: 100px;
             display: none;
             /* Por defecto, la modal de la encuesta está oculta */
             position: fixed;
@@ -72,6 +73,8 @@
             font-size: 24px;
             font-weight: bold;
             cursor: pointer;
+            border: none;
+            background: none;
         }
 
         /* Estilo para el título de la encuesta */
@@ -370,7 +373,7 @@
             </section>
             <div id="encuesta-modal" class="modal">
                 <div class="modal-content">
-                    <span class="close-button close-encuesta-modal">&times;</span>
+                    <button class="close-button"onclick=closeEncuestaModal()>&times;</button>
                     <h4 class="mt-3 text-center ">¡ATENCIÓN!</h4>
                     <h4 class="mt-1 text-center mb-5">¡Responder ÚNICAMENTE si ha probado la receta!</h4>
                     <form id="encuesta-form">
@@ -563,6 +566,10 @@
         });
     </script>
     <script>
+        function closeEncuestaModal() {
+            const encuestaModal = document.getElementById("encuesta-modal");
+            encuestaModal.style.display = "none";
+        }
         window.addEventListener("scroll", function () {
             const scrollTopButton = document.querySelector(".scrolltop");
             if (window.scrollY > 100) { // Si se desplaza más de 100px, mostrar el botón

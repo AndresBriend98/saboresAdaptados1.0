@@ -929,7 +929,7 @@
             function viewSelectedEncuesta(encuestaId) {
                 $.get(`/encuestas/${encuestaId}`, function (encuesta) {
                     const encuestaContent = `
-                        <p><strong>1. Comida: </strong> ${encuesta.comida}</p>
+                        <p><strong>1. Receta: </strong> ${encuesta.comida}</p>
                         <p><strong>2. ¿Tuvo alguna dificultad para tragar durante su última comida?</strong></p>
                         <p>Respuesta: ${encuesta.tragar}</p>
                         <p><strong>3. ¿Tosió o sintió que se ahogaba al tragar?</strong></p>

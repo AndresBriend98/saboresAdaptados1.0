@@ -33,23 +33,17 @@ const encuestaschema = mongoose.Schema({
         type: String,
         require: true
     },
-<<<<<<< HEAD
         // Otras propiedades de la encuesta...
     recipe: {
         type: mongoose.Types.ObjectId,
         ref: 'Receta'
     },
     
-=======
->>>>>>> f7aa1528edb7125fc0782e650dfa68975f15d8a2
     paciente: {
         type: mongoose.Types.ObjectId,
         ref: 'paciente'
     }
-<<<<<<< HEAD
     
-=======
->>>>>>> f7aa1528edb7125fc0782e650dfa68975f15d8a2
 },{
     timestamps:true
 });
