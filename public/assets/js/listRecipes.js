@@ -52,12 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                         </a>
                                     </li>
                                     <li>
-<<<<<<< HEAD
-                                        <button class="encuesta-btn btn-blue" data-recipe-id="${recipe._id}">Responder encuesta</button>
+                                        <button class="encuesta-btn btn-blue" data-recipe-id="${recipe._id}" data-recipe-name="${recipe.name}">Responder encuesta</button>
                                         <input type="hidden" id="encuesta-recipe-id" name="encuesta-recipe-id">
-=======
-                                        <button class="btn btn-primary btn-cuestionario" data-nombre-receta="${recipe.name}">Realizar Encuesta</button>
->>>>>>> f7aa1528edb7125fc0782e650dfa68975f15d8a2
                                     </li>
                                 </ul>
                             </div>
@@ -112,23 +108,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 encuestaButtons.forEach(button => {
                     button.addEventListener("click", function () {
                         const recipeId = button.getAttribute("data-recipe-id");
-                        openEncuestaModal(recipeId);
+                        const recipename = button.getAttribute("data-recipe-name");
+                        openEncuestaModal(recipeId,recipename);
                     });
                 });
-<<<<<<< HEAD
-=======
-
-                // Agregar evento para guardar el nombre de la receta en sessionStorage
-                var btnCuestionario = document.querySelectorAll(".btn-cuestionario");
-                btnCuestionario.forEach(btn => {
-                    btn.addEventListener("click", function() {
-                        var nombreReceta = this.getAttribute("data-nombre-receta");
-                        sessionStorage.setItem("nombreReceta", nombreReceta);
-                        window.location.href = "../cuestionario.html"; // Redireccionar a la página de cuestionario
-                    });
-                });
-
->>>>>>> f7aa1528edb7125fc0782e650dfa68975f15d8a2
             }).fail(function (xhr) {
                 $("#menu-dish").html(`<p>Error al obtener recetas para el nivel ${level}: ${xhr.responseText}</p>`);
             });
@@ -139,8 +122,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Función para abrir el modal de la encuesta y almacenar el ID de la receta
-    function openEncuestaModal(recipeId) {
+    function openEncuestaModal(recipeId,nombre) {
         const encuestaModal = document.getElementById("encuesta-modal");
+        sessionStorage.setItem("nombreReceta", nombre);
         encuestaModal.style.display = "block";
         // Almacena el ID de la receta en un campo oculto dentro del modal de la encuesta
         document.getElementById("encuesta-recipe-id").value = recipeId;
@@ -164,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Formar el objeto de datos para la encuesta
             const formData = {
-                comida: $("input[name='comida']:checked").val(),
+                comida: sessionStorage.getItem('nombreReceta'),
                 tragar: $("input[name='tragar']:checked").val(),
                 tosio: $("input[name='tosio']:checked").val(),
                 voz: $("input[name='voz']:checked").val(),
