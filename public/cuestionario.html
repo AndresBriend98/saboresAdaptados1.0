@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Dificultad al Tragar</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Formulario de Dificultad al Tragar</h2>
+        <form id="tragarForm">
+            <div class="form-group">
+                <label>¿Tuvo alguna dificultad para tragar durante su última comida?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="dificultad_tragar" id="dificultad_tragar_si" value="sí">
+                    <label class="form-check-label" for="dificultad_tragar_si">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="dificultad_tragar" id="dificultad_tragar_no" value="no">
+                    <label class="form-check-label" for="dificultad_tragar_no">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>¿Tosió o sintió que se ahogaba al tragar?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tos_ahogo" id="tos_ahogo_si" value="sí">
+                    <label class="form-check-label" for="tos_ahogo_si">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tos_ahogo" id="tos_ahogo_no" value="no">
+                    <label class="form-check-label" for="tos_ahogo_no">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>¿Su voz cambió después de comer o beber, como si estuviera más ronca?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="cambio_voz" id="cambio_voz_si" value="sí">
+                    <label class="form-check-label" for="cambio_voz_si">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="cambio_voz" id="cambio_voz_no" value="no">
+                    <label class="form-check-label" for="cambio_voz_no">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>¿Tuvo que tragar varias veces para que la comida bajara?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tragar_varias_veces" id="tragar_varias_veces_si" value="sí">
+                    <label class="form-check-label" for="tragar_varias_veces_si">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tragar_varias_veces" id="tragar_varias_veces_no" value="no">
+                    <label class="form-check-label" for="tragar_varias_veces_no">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>¿Usó alguna técnica especial para ayudar a tragar, como cambiar la postura de la cabeza o tomar sorbos pequeños?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tecnica_especial" id="tecnica_especial_si" value="sí">
+                    <label class="form-check-label" for="tecnica_especial_si">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tecnica_especial" id="tecnica_especial_no" value="no">
+                    <label class="form-check-label" for="tecnica_especial_no">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>¿Le ayudaron estas técnicas a tragar mejor?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tecnicas_ayuda" id="tecnicas_ayuda_si" value="sí">
+                    <label class="form-check-label" for="tecnicas_ayuda_si">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="tecnicas_ayuda" id="tecnicas_ayuda_no" value="no">
+                    <label class="form-check-label" for="tecnicas_ayuda_no">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>¿Sintió dolor o malestar al tragar?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="dolor_tragar" id="dolor_tragar_si" value="sí">
+                    <label class="form-check-label" for="dolor_tragar_si">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="dolor_tragar" id="dolor_tragar_no" value="no">
+                    <label class="form-check-label" for="dolor_tragar_no">No</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Script de JavaScript para manejar la solicitud con jQuery
+        $("#tragarForm").on("submit", function (e) {
+            e.preventDefault(); // Evitar comportamiento predeterminado del formulario
+
+            // Obtener los valores del formulario
+            const formData = {
+                comida: sessionStorage.getItem('nombreReceta'),
+                tragar: $("input[name='dificultad_tragar']:checked").val(),
+                tosio: $("input[name='tos_ahogo']:checked").val(),
+                voz: $("input[name='cambio_voz']:checked").val(),
+                variasveces: $("input[name='tragar_varias_veces']:checked").val(),
+                tecnicaespecial: $("input[name='tecnica_especial']:checked").val(),
+                ayudo: $("input[name='tecnicas_ayuda']:checked").val(),
+                malestar: $("input[name='dolor_tragar']:checked").val()
+            };
+
+            // Realizar la solicitud con jQuery $.post
+            $.post(`/encuestas/${sessionStorage.getItem('patientId')}`, JSON.stringify(formData), function(data) {
+                // Manejar la respuesta exitosa
+                console.log(data); // Puedes mostrar un mensaje de éxito al usuario si lo deseas
+            }).fail(function(xhr, status, error) {
+                // Manejar errores de la solicitud
+                console.error('Error:', error);
+                // Puedes mostrar un mensaje de error al usuario si lo deseas
+            });
+        });
+    </script>
+</body>
+</html>

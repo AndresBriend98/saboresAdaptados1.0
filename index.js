@@ -109,6 +109,7 @@ app.post("/admin/add-patient", async (req, res) => {
         res.status(500).send("Error al agregar paciente.");
     }
 });
+<<<<<<< HEAD
 app.post("/encuestas/:pacienteID", async (req, res) => {
     const { pacienteID } = req.params; //buscar paciente que creo el cuestionario
     var patient = await Patients.findById(pacienteID)
@@ -174,7 +175,59 @@ app.get("/patient/byDni/:dni", async (req, res) => {
         res.status(500).json({ mensaje: 'Error del servidor al obtener información del paciente' });
     }
 });
+=======
+//Creacion de cuestionarios
+app.post("/encuestas/:pacienteID", async (req, res) => {
+    const {pacienteID} = req.params;//buscar paciente que creo el cuestionario
+    var patient = await Patients.findById(pacienteID)
+    const {comida, tragar, tosio, voz, variasveces,tecnicaespecial, ayudo, malestar} = req.body;
+>>>>>>> f7aa1528edb7125fc0782e650dfa68975f15d8a2
 
+    try {
+        const admin = await db.collection("admin").findOne({ email: "saboresadaptados@gmail.com" });
+
+        if (!admin) {
+            return res.status(403).send("Acceso denegado");
+        }
+
+        // Si no hay duplicados, agregar el nuevo paciente
+        const encuestas = new Encuesta({
+            comida,
+            tragar,
+            tosio,
+            voz,
+            variasveces,
+            tecnicaespecial,
+            ayudo,
+            malestar,
+            paciente: pacienteID
+        });
+        patient.encuestas.push(encuestas._id)
+        await patient.save()//guardar cuestionario en el paciente
+        await db.collection("encuestas").insertOne(encuestas); // Insertar el nuevo cuestionario
+
+        // Devolver un mensaje de éxito si se insertó correctamente
+        res.status(200).send("Cuestionario creado con exito");
+    } catch (error) {
+        // Si hay un error inesperado, devolver un código 500
+        console.error("Error al agregar paciente:", error);
+        res.status(500).send("Error al agregar paciente.");
+    }
+});
+//Obtener informacion de respuestas
+app.get("/encuestas/:encuestaID", async (req, res)=>{
+    const {encuestaID} = req.params;//buscar la encuesta por encuesta
+    try{
+        const encuesta = await Encuesta.findById(encuestaID)
+        if (!encuesta) {
+            return res.status(404).json({ mensaje: 'Encuesta no encontrada' });
+        }
+        res.status(200).json(encuesta);// devulve la informacion de la encuesta
+    }catch (error) {
+        console.error('Error al obtener la encuesta:', error);
+        res.status(500).json({ mensaje: 'Error del servidor al obtener la encuesta' });
+    }
+})
 // Endpoint para que el paciente acceda a sus datos usando el DNI
 app.get("/patient/:dni", async (req, res) => {
     var dni = req.params.dni;
@@ -203,7 +256,7 @@ app.post("/patient/login", async (req, res) => {
             return res.status(404).send("Paciente no registrado"); // Devuelve 404 si el paciente no se encuentra
         }
 
-        res.status(200).send("Login exitoso!"); // Devuelve 200 si el paciente se encuentra
+        res.status(200).send({ id: patient._id }); // Devuelve 200 si el paciente se encuentra
     } catch (error) {
         console.error("Error durante el login:", error);
         res.status(500).send("Error durante el login."); // Manejo de errores del servidor
